@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sistematiza.ai - Consultoria tech e desenvolvimento de sistemas web sob medida, automação e integrações para o seu negócio.">
+<title>Sistematiza.ai — Sistemas que funcionam de verdade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff;
+    --black: #0a0a0a;
+    --cyan: #00c2cb;
+    --cyan-light: #e0fafb;
+    --cyan-mid: #00a8b0;
+    --ink: #111827;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --surface: #f9fafb;
+    --accent: #0052cc;
+    --green-logo: #2ecc71;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 5vw;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(0,194,203,0.08); }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .logo-symbol {
+    width: 24px;
+    height: 24px;
+  }
+  .logo span { color: var(--cyan); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    background: var(--cyan);
+    color: var(--white) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--cyan-mid) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 5vw 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: var(--white);
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.5;
+    mask-image: radial-gradient(ellipse 80% 60% at 60% 40%, black 40%, transparent 100%);
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,194,203,0.12) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+  }
+
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--cyan-light);
+    color: var(--cyan-mid);
+    font-size: 0.8rem; font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0,194,203,0.2);
+  }
+  .hero-tag::before {
+    content: '';
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--cyan);
+    animation: blink 1.5s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--cyan);
+    position: relative;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 2px solid var(--ink);
+  }
+  .btn-primary:hover { background: var(--cyan); border-color: var(--cyan); }
+
+  .btn-secondary {
+    color: var(--ink);
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 2px solid var(--border);
+    background: var(--white);
+  }
+  .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+
+  /* hero visual */
+  .hero-visual {
+    position: relative;
+  }
+
+  .terminal {
+    background: #0d1117;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 32px 64px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,194,203,0.1);
+    transform: perspective(1000px) rotateY(-5deg) rotateX(3deg);
+    transition: transform 0.4s ease;
+  }
+  .terminal:hover { transform: perspective(1000px) rotateY(-2deg) rotateX(1deg); }
+
+  .terminal-bar {
+    background: #161b22;
+    padding: 12px 16px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid #30363d;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; }
+  .dot.y { background: #febc2e; }
+  .dot.g { background: #28c840; }
+  .term-title { color: #8b949e; font-size: 0.75rem; margin-left: 0.5rem; font-family: monospace; }
+
+  .terminal-body { padding: 20px; font-family: 'DM Mono', 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8; }
+
+  .t-line { display: flex; gap: 0.5rem; }
+  .t-prompt { color: #00c2cb; }
+  .t-cmd { color: #e6edf3; }
+  .t-comment { color: #8b949e; }
+  .t-out { color: #3fb950; padding-left: 1.2rem; }
+  .t-out.warn { color: #d29922; }
+  .t-cursor { display: inline-block; width: 8px; height: 14px; background: var(--cyan); animation: blink 1s step-end infinite; vertical-align: middle; }
+
+  /* CLIENTS strip */
+  .clients {
+    padding: 3rem 5vw;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .clients-inner { max-width: 1200px; margin: 0 auto; }
+  .clients p { font-size: 0.8rem; color: var(--muted); text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+  .clients-logos {
+    display: flex; justify-content: center; align-items: center;
+    gap: 3rem; flex-wrap: wrap;
+  }
+  .client-pill {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #d1d5db;
+    letter-spacing: -0.02em;
+    transition: color 0.2s;
+    cursor: default;
+  }
+  .client-pill:hover { color: var(--cyan); }
+
+  /* SERVICES */
+  .section { padding: 6rem 5vw; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--cyan);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    font-weight: 400;
+    margin-bottom: 3.5rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--cyan);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { border-color: rgba(0,194,203,0.3); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,194,203,0.08); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 44px; height: 44px;
+    background: var(--cyan-light);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.2rem;
+    font-family: monospace;
+    color: var(--cyan-mid);
+  }
+
+  .service-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+  .service-card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  /* PROJECTS */
+  .projects { background: var(--surface); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); border-color: var(--cyan); }
+
+  .project-thumb {
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+    color: var(--cyan-mid);
+    font-family: monospace;
+  }
+  .project-thumb.t1 { background: linear-gradient(135deg, #e0fafb 0%, #b2f0f3 100%); }
+  .project-thumb.t2 { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); }
+  .project-thumb.t3 { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); }
+  .project-thumb.t4 { background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%); }
+
+  .project-tag {
+    position: absolute; top: 12px; left: 12px;
+    background: rgba(255,255,255,0.9);
+    color: var(--muted);
+    font-size: 0.7rem; font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .project-info { padding: 1.5rem; }
+  .project-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 0.5rem;
+  }
+  .project-info p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; font-weight: 400; }
+
+  /* DEPOIMENTOS */
+  .depo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .depo-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: box-shadow 0.2s;
+  }
+  .depo-card:hover { box-shadow: 0 8px 32px rgba(0,194,203,0.07); }
+
+  .depo-stars { color: var(--cyan); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .depo-text { font-size: 0.9rem; color: var(--muted); line-height: 1.7; font-weight: 400; margin-bottom: 1.25rem; font-style: italic; }
+  .depo-author { display: flex; align-items: center; gap: 0.75rem; }
+  .depo-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700;
+    background: var(--cyan-light); color: var(--cyan-mid);
+  }
+  .depo-name { font-weight: 600; font-size: 0.875rem; color: var(--ink); }
+  .depo-role { font-size: 0.78rem; color: var(--muted); }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--ink);
+    padding: 6rem 5vw;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,194,203,0.15) 0%, transparent 70%);
+  }
+  .cta-section::after {
+    content: '';
+    position: absolute; bottom: -150px; left: -100px;
+    width: 350px; height: 350px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,82,204,0.1) 0%, transparent 70%);
+  }
+
+  .cta-inner {
+    max-width: 1200px; margin: 0 auto;
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-inner h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    max-width: 580px;
+  }
+  .cta-inner h2 span { color: var(--cyan); }
+
+  .cta-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-cta-primary {
+    background: var(--cyan);
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-cta-primary:hover { background: var(--cyan-mid); }
+
+  .btn-cta-outline {
+    border: 2px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-cta-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+
+  /* FOOTER */
+  footer {
+    background: #060a10;
+    padding: 3rem 5vw;
+    border-top: 1px solid #1c2333;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--white); text-decoration: none;
+  }
+  .footer-logo span { color: var(--cyan); }
+  .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+  .footer-links a { font-size: 0.85rem; color: #6b7280; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cyan); }
+  .footer-copy { font-size: 0.8rem; color: #4b5563; }
+
+  /* ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .depo-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .cta-inner { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar" aria-label="Navegação Principal">
+  <a href="#" class="logo" aria-label="Voltar ao topo">
+    <svg class="logo-symbol" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 20L10 50L30 80" stroke="#2ecc71" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M70 20L90 50L70 80" stroke="#2ecc71" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M60 10L40 90" stroke="#2ecc71" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    sistematiza<span>.ai</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicos" onclick="scrollTo('servicos',event)" aria-label="Ir para Serviços">Serviços</a></li>
+    <li><a href="#projetos" onclick="scrollTo('projetos',event)" aria-label="Ir para Projetos">Projetos</a></li>
+    <li><a href="#depoimentos" onclick="scrollTo('depoimentos',event)" aria-label="Ir para Depoimentos">Depoimentos</a></li>
+    <li><a href="#contato" class="nav-cta" onclick="scrollTo('contato',event)" aria-label="Falar conosco">Fale conosco</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Soluções tecnológicas sob medida</div>
+      <h1>Sistemas que <em>funcionam</em> no seu negócio.</h1>
+      <p>Da regra de negócio ao código rodando — entregamos soluções digitais personalizadas para pequenas e médias empresas que precisam de tecnologia sem complicação.</p>
+      <div class="hero-btns">
+        <a href="#contato" class="btn-primary" onclick="scrollTo('contato',event)">Quero meu projeto</a>
+        <a href="#projetos" class="btn-secondary" onclick="scrollTo('projetos',event)">Ver projetos</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot r"></div>
+          <div class="dot y"></div>
+          <div class="dot g"></div>
+          <span class="term-title">sistematiza.ai — build</span>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">npm run build</span></div>
+          <div class="t-line"><span class="t-out">✓ Frontend otimizado (Next.js)</span></div>
+          <br>
+          <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">cargo build --release</span></div>
+          <div class="t-line"><span class="t-out">✓ Backend compilado em Rust</span></div>
+          <div class="t-line"><span class="t-out">✓ APIs de integração conectadas</span></div>
+          <div class="t-line"><span class="t-out warn">⚡ Deploy em andamento...</span></div>
+          <br>
+          <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">systemctl status app</span></div>
+          <div class="t-line"><span class="t-out">✓ Sistema rodando em produção (Uptime: 100%)</span></div>
+          <div class="t-line"><span class="t-prompt">$</span><span class="t-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="clients">
+  <div class="clients-inner">
+    <p>Setores atendidos</p>
+    <div class="clients-logos">
+      <span class="client-pill">Food & Bares</span>
+      <span class="client-pill">Agro & Energia</span>
+      <span class="client-pill">RH & Gestão</span>
+      <span class="client-pill">Financeiro</span>
+      <span class="client-pill">ERPs & Corporativo</span>
+      <span class="client-pill">Varejo</span>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="servicos">
+  <div class="section-inner">
+    <span class="section-label reveal">O que fazemos</span>
+    <h2 class="reveal">Tecnologia desenhada<br>para o seu negócio.</h2>
+    <p class="section-sub reveal">Não vendemos pacotes prontos. Entendemos o processo, escrevemos o funcional e desenvolvemos o sistema do zero — do jeito que cada negócio precisa.</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">&lt;/&gt;</div>
+        <h3>Levantamento de requisitos</h3>
+        <p>Traduzo processos complexos de negócio em especificações funcionais claras — sem ruído entre o cliente e o desenvolvimento.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">&#123;...&#125;</div>
+        <h3>Sistemas web sob medida</h3>
+        <p>Aplicações de alta performance que rodam no navegador, funcionam offline quando necessário e escalam conforme o negócio cresce.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">&rarr;|</div>
+        <h3>Integrações avançadas</h3>
+        <p>Conectamos ecossistemas complexos, APIs e bancos de dados — garantindo que as informações do negócio fluam perfeitamente.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">&#9745;</div>
+        <h3>Controle operacional</h3>
+        <p>Comandas, estoque, relatórios, nota fiscal — sistemas de gestão robustos focados no controle real das métricas.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">&#9881;</div>
+        <h3>Automação e Dados</h3>
+        <p>Estruturação de dados para compensação, automação de tarefas manuais e integração com lógicas de análise profunda.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">&#128736;</div>
+        <h3>Manutenção & evolução</h3>
+        <p>Suporte técnico contínuo e arquitetura projetada para absorver novas funcionalidades sem reescrever o código base.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section projects" id="projetos">
+  <div class="section-inner">
+    <span class="section-label reveal">Nossos projetos</span>
+    <h2 class="reveal">Não são apenas sistemas,<br>são <span style="color:var(--cyan)">resultados reais.</span></h2>
+    <p class="section-sub reveal">Soluções estruturadas para processar regras de negócio com precisão e controle.</p>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-thumb t1">
+          <span class="project-tag">Comércio & Alimentação</span>
+          &lt;/&gt;
+        </div>
+        <div class="project-info">
+          <h3>Sistema de comandas</h3>
+          <p>Controle de consumo individual por cliente, fechamento de conta, emissão de nota fiscal e relatório do dia. Funciona sem internet — ideal para operações locais.</p>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb t2">
+          <span class="project-tag">Agro & Indústria</span>
+          &#123;...&#125;
+        </div>
+        <div class="project-info">
+          <h3>Gestão e Rastreio de Equipamentos</h3>
+          <p>Monitoramento de entradas, saídas, reparos de componentes eletrônicos (ECU) e controle de status em tempo real. Essencial para modernização agrícola e industrial.</p>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb t3">
+          <span class="project-tag">Profissionais autônomos</span>
+          &rarr;|
+        </div>
+        <div class="project-info">
+          <h3>Agenda & gestão de clientes</h3>
+          <p>Agendamento, histórico de atendimentos, controle financeiro e envio de lembretes automáticos. Foco total em profissionais que trabalham com faturamento por hora.</p>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb t4">
+          <span class="project-tag">Prestadores de serviços</span>
+          &#128736;
+        </div>
+        <div class="project-info">
+          <h3>Ordem de serviço digital</h3>
+          <p>Abertura, acompanhamento e fechamento de OS. Integração com banco de dados centralizado — eliminando falhas no registro de atendimentos de manutenção.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="depoimentos">
+  <div class="section-inner">
+    <span class="section-label reveal">O que falam de nós</span>
+    <h2 class="reveal">O que dizem sobre<br>o nosso trabalho.</h2>
+    <div class="depo-grid" style="margin-top:3rem">
+      <div class="depo-card reveal">
+        <div class="depo-stars">★★★★★</div>
+        <p class="depo-text">"Antes perdia venda porque não conseguia controlar o que saía. Agora sei exatamente o que vendi, o que devo repor e quanto entrou no dia."</p>
+        <div class="depo-author">
+          <div class="depo-avatar">MR</div>
+          <div>
+            <div class="depo-name">Proprietário</div>
+            <div class="depo-role">Setor de esporte & lazer</div>
+          </div>
+        </div>
+      </div>
+      <div class="depo-card reveal">
+        <div class="depo-stars">★★★★★</div>
+        <p class="depo-text">"O diferencial é que a equipe realmente entende a regra de negócio antes de codar. O sistema saiu com os cálculos e agrupamentos corretos."</p>
+        <div class="depo-author">
+          <div class="depo-avatar">AC</div>
+          <div>
+            <div class="depo-name">Analista Funcional</div>
+            <div class="depo-role">Setor de Saúde/Seguros</div>
+          </div>
+        </div>
+      </div>
+      <div class="depo-card reveal">
+        <div class="depo-stars">★★★★★</div>
+        <p class="depo-text">"Precisávamos de algo de alta performance. A arquitetura entregue roda liso, garantindo a integração dos dados sem quedas de sistema."</p>
+        <div class="depo-author">
+          <div class="depo-avatar">PL</div>
+          <div>
+            <div class="depo-name">Sócio-fundador</div>
+            <div class="depo-role">Operações Comerciais</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contato">
+  <div class="cta-inner">
+    <h2>Vamos <span>sistematizar</span><br>o seu negócio?</h2>
+    <div class="cta-btns">
+      <a href="mailto:sistematizaai@gmail.com" class="btn-cta-primary" aria-label="Entre em contato">Entre em contato</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">
+      <svg class="logo-symbol" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 20L10 50L30 80" stroke="#2ecc71" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M70 20L90 50L70 80" stroke="#2ecc71" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M60 10L40 90" stroke="#2ecc71" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      sistematiza<span>.ai</span>
+    </a>
+    <ul class="footer-links">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 sistematiza.ai — Itaú de Minas, MG</span>
+  </div>
+</footer>
+
+<script>
+  function scrollTo(id, e) {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const offset = 72;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
