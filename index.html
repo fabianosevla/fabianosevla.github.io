@@ -111,11 +111,18 @@
   .produto-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
   .produto-bullets li { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.9rem; color: var(--ink); }
   .produto-bullets li::before { content: '✓'; color: var(--cyan); font-weight: 700; flex-shrink: 0; }
+
+  /* Screenshots grid 2x2 — OS e Comandas */
   .produto-screenshots { background: linear-gradient(135deg, #e0fafb 0%, #f0fdf4 100%); border-left: 1px solid var(--border); padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
   .screenshot { border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.8); transition: transform 0.2s; width: 100%; }
   .screenshot:hover { transform: scale(1.04) translateY(-4px) !important; }
   .screenshot:nth-child(odd) { transform: rotate(-1.5deg); margin-top: 1rem; }
   .screenshot:nth-child(even) { transform: rotate(1.5deg); }
+
+  /* Screenshots verticais — ERP (wide) */
+  .produto-screenshots-vertical { background: linear-gradient(135deg, #e0fafb 0%, #f0fdf4 100%); border-left: 1px solid var(--border); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; overflow-y: auto; max-height: 520px; }
+  .screenshot-wide { border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.8); width: 100%; display: block; transition: transform 0.2s; }
+  .screenshot-wide:hover { transform: scale(1.01); }
 
   .depo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .depo-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; transition: box-shadow 0.2s; }
@@ -173,7 +180,7 @@
     .depo-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .produto-header { grid-template-columns: 1fr; }
-    .produto-screenshots { border-left: none; border-top: 1px solid var(--border); }
+    .produto-screenshots, .produto-screenshots-vertical { border-left: none; border-top: 1px solid var(--border); }
     .numeros-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
@@ -374,7 +381,7 @@
       </div>
     </div>
 
-    <!-- Produto 3: ERP -->
+    <!-- Produto 3: ERP — layout vertical para imagens wide -->
     <div class="produto-card reveal">
       <div class="produto-header">
         <div class="produto-info">
@@ -391,11 +398,11 @@
             <li>Relatórios de faturamento, lucro e estoque valorizado</li>
           </ul>
         </div>
-        <div class="produto-screenshots">
-          <img src="erp1.png" alt="Tela de vendas do ERP" class="screenshot" />
-          <img src="erp2.png" alt="Controle de produtos" class="screenshot" />
-          <img src="erp3.png" alt="Gestão de estoque" class="screenshot" />
-          <img src="erp4.png" alt="Clientes e fiado" class="screenshot" />
+        <div class="produto-screenshots-vertical">
+          <img src="erp1.png" alt="Tela de vendas do ERP" class="screenshot-wide" />
+          <img src="erp2.png" alt="Controle de produtos" class="screenshot-wide" />
+          <img src="erp3.png" alt="Gestão de estoque" class="screenshot-wide" />
+          <img src="erp4.png" alt="Relatórios do ERP" class="screenshot-wide" />
         </div>
       </div>
     </div>
