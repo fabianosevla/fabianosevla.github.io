@@ -821,8 +821,8 @@ async function enviarFormulario() {
   btn.disabled = true;
   btn.textContent = 'Enviando...';
 
-  try {
-    await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
+try {
+    const result = await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
       from_name:  nome,
       telefone:   telefone,
       from_email: email,
@@ -831,14 +831,13 @@ async function enviarFormulario() {
       mensagem:   mensagem || '—',
       to_email:   'sistematizaai@gmail.com',
     });
+    console.log('SUCESSO:', result);
     document.getElementById('formArea').style.display = 'none';
     document.getElementById('successArea').style.display = 'block';
   } catch (err) {
-    // Fallback: abre o cliente de email do usuário
-    const assunto = encodeURIComponent(`[sistematiza.ai] Orçamento — ${interesse}`);
-    const corpo   = encodeURIComponent(
-      `Nome: ${nome}\nWhatsApp: ${telefone}\nE-mail: ${email}\nEstabelecimento: ${empresa || '—'}\nInteresse: ${interesse}\n\nMensagem:\n${mensagem || '—'}`
-    );
+    console.error('ERRO EMAILJS:', JSON.stringify(err));
+    alert('Erro: ' + JSON.stringify(err));
+  };
     window.location.href = `mailto:sistematizaai@gmail.com?subject=${assunto}&body=${corpo}`;
     document.getElementById('formArea').style.display = 'none';
     document.getElementById('successArea').style.display = 'block';
