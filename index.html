@@ -175,18 +175,18 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.08); }
 .produto-bullets li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 
 /* CARROSSEL */
-.carousel { background: linear-gradient(145deg, #0a1628 0%, #0d2137 100%); border-left: 1px solid var(--border); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; min-height: 360px; }
+.carousel { background: var(--surface); border-left: 1px solid var(--border); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; min-height: 360px; }
 .carousel-track { display: flex; width: 100%; height: 100%; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); }
-.carousel-slide { min-width: 100%; display: flex; align-items: center; justify-content: center; padding: 1.75rem; }
-.carousel-slide img { width: 100%; border-radius: 10px; box-shadow: 0 12px 40px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); display: block; }
-.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--white); z-index: 10; transition: all 0.2s; backdrop-filter: blur(4px); }
+.carousel-slide { min-width: 100%; display: flex; align-items: stretch; justify-content: center; padding: 0; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0; box-shadow: none; border: none; }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.1); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--ink); z-index: 10; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
 .carousel-btn:hover { background: var(--green); border-color: var(--green); color: var(--ink); }
 .carousel-btn.prev { left: 12px; }
 .carousel-btn.next { right: 12px; }
 .carousel-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; }
-.carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer; transition: all 0.2s; border: none; padding: 0; }
+.carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(0,0,0,0.2); cursor: pointer; transition: all 0.2s; border: none; padding: 0; }
 .carousel-dot.active { background: var(--green); transform: scale(1.3); }
-.carousel-counter { position: absolute; top: 12px; right: 16px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.35); }
+.carousel-counter { position: absolute; top: 12px; right: 16px; font-size: 11px; font-weight: 600; color: rgba(0,0,0,0.3); background: rgba(255,255,255,0.8); padding: 2px 8px; border-radius: 999px; }
 
 /* DEPOIMENTOS */
 .depo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
@@ -397,17 +397,17 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
   <div class="hero-glow2"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-tag">Sistemas prontos para uso · Desenvolvimento sob demanda</div>
-      <h1>Chega de caderno.<br>Seu negócio merece <em>sistema.</em></h1>
-      <p class="hero-sub">A sistematiza<span style="color:var(--green)">.ai</span> cria e vende sistemas digitais para pequenos e médios negócios — organizando vendas, estoque, atendimentos e comandas em uma plataforma simples, que qualquer pessoa consegue usar.</p>
+      <div class="hero-tag">Soluções prontas para uso · Desenvolvimento sob demanda</div>
+      <h1>Seu negócio no controle.<br>Do jeito que <em>precisa ser.</em></h1>
+      <p class="hero-sub">A sistematiza<span style="color:var(--green)">.ai</span> desenvolve e comercializa sistemas digitais para pequenos e médios negócios — organizando vendas, estoque, atendimentos e comandas de um jeito que faz sentido para a sua operação.</p>
       <div class="hero-btns">
         <button class="btn-green" onclick="abrirModal()">Quero meu sistema</button>
         <a href="#produtos" class="btn-outline" onclick="sv('produtos',event)">Ver soluções →</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="hero-stat-num">3</div>
-          <div class="hero-stat-label">sistemas prontos<br>disponíveis agora</div>
+          <div class="hero-stat-num">+</div>
+          <div class="hero-stat-label">soluções prontas<br>disponíveis agora</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-num">+70%</div>
@@ -556,8 +556,8 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
 <section class="section produtos" id="produtos">
   <div>
     <span class="section-label reveal">Nossas soluções</span>
-    <h2 class="reveal">Três sistemas prontos.<br>Um para cada tipo de <span class="green">negócio.</span></h2>
-    <p class="section-sub reveal">Cada sistema foi construído para resolver um problema específico. Use um, dois ou todos — dependendo do que o seu negócio precisa. E se precisar de algo diferente, desenvolvemos sob medida.</p>
+    <h2 class="reveal">Soluções prontas.<br>Uma para cada tipo de <span class="green">negócio.</span></h2>
+    <p class="section-sub reveal">Cada solução foi construída para resolver um problema específico. Use uma, duas ou todas — dependendo do que o seu negócio precisa. E se precisar de algo diferente, desenvolvemos sob medida.</p>
 
     <!-- OS -->
     <div class="produto-card reveal">
@@ -733,7 +733,7 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
         <span class="footer-logo-name">sistematiza<span class="footer-ai">.ai</span></span>
       </a>
       <p class="footer-tagline">Empresa 100% remota</p>
-      <p class="footer-location">Passos · Ribeirão Preto · MG</p>
+      <p class="footer-location">Passos - MG · Ribeirão Preto - SP</p>
     </div>
     <div class="footer-col">
       <h4>Navegação</h4>
