@@ -175,10 +175,10 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.08); }
 .produto-bullets li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 
 /* CARROSSEL */
-.carousel { background: var(--surface); border-left: 1px solid var(--border); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; min-height: 360px; }
+.carousel { background: #f1f5f9; border-left: 1px solid var(--border); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; min-height: 360px; }
 .carousel-track { display: flex; width: 100%; height: 100%; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); }
-.carousel-slide { min-width: 100%; display: flex; align-items: stretch; justify-content: center; padding: 0; }
-.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0; box-shadow: none; border: none; }
+.carousel-slide { min-width: 100%; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+.carousel-slide img { width: 100%; max-height: 340px; object-fit: contain; display: block; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.9); }
 .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.1); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--ink); z-index: 10; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
 .carousel-btn:hover { background: var(--green); border-color: var(--green); color: var(--ink); }
 .carousel-btn.prev { left: 12px; }
@@ -398,16 +398,16 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
   <div class="hero-inner">
     <div>
       <div class="hero-tag">Soluções prontas para uso · Desenvolvimento sob demanda</div>
-      <h1>Seu negócio no controle.<br>Do jeito que <em>precisa ser.</em></h1>
-      <p class="hero-sub">A sistematiza<span style="color:var(--green)">.ai</span> desenvolve e comercializa sistemas digitais para pequenos e médios negócios — organizando vendas, estoque, atendimentos e comandas de um jeito que faz sentido para a sua operação.</p>
+      <h1>Existe um sistema<br>para cada <em>problema.</em></h1>
+      <p class="hero-sub">A sistematiza<span style="color:var(--green)">.ai</span> desenvolve e comercializa sistemas digitais para pequenos e médios negócios — temos soluções prontas para os desafios mais comuns e criamos sob medida para o que for diferente.</p>
       <div class="hero-btns">
         <button class="btn-green" onclick="abrirModal()">Quero meu sistema</button>
         <a href="#produtos" class="btn-outline" onclick="sv('produtos',event)">Ver soluções →</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="hero-stat-num">+</div>
-          <div class="hero-stat-label">soluções prontas<br>disponíveis agora</div>
+          <div class="hero-stat-num">∞</div>
+          <div class="hero-stat-label">possibilidades de<br>solução para o seu negócio</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-num">+70%</div>
@@ -546,7 +546,7 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
       </div>
       <div class="numero-item reveal">
         <div class="numero-val">1</div>
-        <div class="numero-label">tela para ver tudo: vendas, estoque, clientes e fiado — sem planilha</div>
+        <div class="numero-label">tela para ver tudo: vendas, estoque, clientes e contas a receber — sem planilha</div>
       </div>
     </div>
   </div>
