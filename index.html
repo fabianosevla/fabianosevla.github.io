@@ -112,17 +112,78 @@
   .produto-bullets li { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.9rem; color: var(--ink); }
   .produto-bullets li::before { content: '✓'; color: var(--cyan); font-weight: 700; flex-shrink: 0; }
 
-  /* Screenshots grid 2x2 — OS e Comandas */
-  .produto-screenshots { background: linear-gradient(135deg, #e0fafb 0%, #f0fdf4 100%); border-left: 1px solid var(--border); padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
-  .screenshot { border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.8); transition: transform 0.2s; width: 100%; }
-  .screenshot:hover { transform: scale(1.04) translateY(-4px) !important; }
-  .screenshot:nth-child(odd) { transform: rotate(-1.5deg); margin-top: 1rem; }
-  .screenshot:nth-child(even) { transform: rotate(1.5deg); }
-
-  /* Screenshots verticais — ERP (wide) */
-  .produto-screenshots-vertical { background: linear-gradient(135deg, #e0fafb 0%, #f0fdf4 100%); border-left: 1px solid var(--border); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; overflow-y: auto; max-height: 520px; }
-  .screenshot-wide { border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.8); width: 100%; display: block; transition: transform 0.2s; }
-  .screenshot-wide:hover { transform: scale(1.01); }
+  /* CARROSSEL */
+  .carousel {
+    background: linear-gradient(135deg, #e0fafb 0%, #f0fdf4 100%);
+    border-left: 1px solid var(--border);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-height: 320px;
+  }
+  .carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease;
+  }
+  .carousel-slide {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .carousel-slide img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+    border: 1px solid rgba(255,255,255,0.9);
+    display: block;
+    object-fit: cover;
+  }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--ink);
+    z-index: 10;
+    transition: all 0.2s;
+  }
+  .carousel-btn:hover { background: var(--cyan); color: #fff; border-color: var(--cyan); }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-btn.next { right: 10px; }
+  .carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+  }
+  .carousel-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    border: none;
+    padding: 0;
+  }
+  .carousel-dot.active { background: var(--cyan); transform: scale(1.2); }
 
   .depo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .depo-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; transition: box-shadow 0.2s; }
@@ -180,7 +241,7 @@
     .depo-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .produto-header { grid-template-columns: 1fr; }
-    .produto-screenshots, .produto-screenshots-vertical { border-left: none; border-top: 1px solid var(--border); }
+    .carousel { border-left: none; border-top: 1px solid var(--border); min-height: 220px; }
     .numeros-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
@@ -347,11 +408,21 @@
             <li>Relatórios automáticos de tudo que foi atendido</li>
           </ul>
         </div>
-        <div class="produto-screenshots">
-          <img src="screen1.png" alt="Tela principal do sistema de OS" class="screenshot" />
-          <img src="screen2.png" alt="Detalhe do atendimento" class="screenshot" />
-          <img src="screen3.png" alt="Relatórios" class="screenshot" />
-          <img src="screen4.png" alt="Cadastro de clientes" class="screenshot" />
+        <div class="carousel" id="carousel-os">
+          <div class="carousel-track" id="track-os">
+            <div class="carousel-slide"><img src="screen1.png" alt="Tela principal OS" /></div>
+            <div class="carousel-slide"><img src="screen2.png" alt="Detalhe OS" /></div>
+            <div class="carousel-slide"><img src="screen3.png" alt="Relatórios OS" /></div>
+            <div class="carousel-slide"><img src="screen4.png" alt="Clientes OS" /></div>
+          </div>
+          <button class="carousel-btn prev" onclick="mover('os', -1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="mover('os', 1)">&#8594;</button>
+          <div class="carousel-dots" id="dots-os">
+            <button class="carousel-dot active" onclick="irPara('os', 0)"></button>
+            <button class="carousel-dot" onclick="irPara('os', 1)"></button>
+            <button class="carousel-dot" onclick="irPara('os', 2)"></button>
+            <button class="carousel-dot" onclick="irPara('os', 3)"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -372,16 +443,26 @@
             <li>Relatório do dia: faturamento, itens mais vendidos e formas de pagamento</li>
           </ul>
         </div>
-        <div class="produto-screenshots">
-          <img src="comanda1.png" alt="Dashboard de mesas" class="screenshot" />
-          <img src="comanda2.png" alt="Adicionando itens na comanda" class="screenshot" />
-          <img src="comanda3.png" alt="Fechando a conta" class="screenshot" />
-          <img src="comanda4.png" alt="Cardápio digital" class="screenshot" />
+        <div class="carousel" id="carousel-cmd">
+          <div class="carousel-track" id="track-cmd">
+            <div class="carousel-slide"><img src="comanda1.png" alt="Dashboard mesas" /></div>
+            <div class="carousel-slide"><img src="comanda2.png" alt="Adicionando itens" /></div>
+            <div class="carousel-slide"><img src="comanda3.png" alt="Fechando conta" /></div>
+            <div class="carousel-slide"><img src="comanda4.png" alt="Cardápio digital" /></div>
+          </div>
+          <button class="carousel-btn prev" onclick="mover('cmd', -1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="mover('cmd', 1)">&#8594;</button>
+          <div class="carousel-dots" id="dots-cmd">
+            <button class="carousel-dot active" onclick="irPara('cmd', 0)"></button>
+            <button class="carousel-dot" onclick="irPara('cmd', 1)"></button>
+            <button class="carousel-dot" onclick="irPara('cmd', 2)"></button>
+            <button class="carousel-dot" onclick="irPara('cmd', 3)"></button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Produto 3: ERP — layout vertical para imagens wide -->
+    <!-- Produto 3: ERP -->
     <div class="produto-card reveal">
       <div class="produto-header">
         <div class="produto-info">
@@ -398,11 +479,21 @@
             <li>Relatórios de faturamento, lucro e estoque valorizado</li>
           </ul>
         </div>
-        <div class="produto-screenshots-vertical">
-          <img src="erp1.png" alt="Tela de vendas do ERP" class="screenshot-wide" />
-          <img src="erp2.png" alt="Controle de produtos" class="screenshot-wide" />
-          <img src="erp3.png" alt="Gestão de estoque" class="screenshot-wide" />
-          <img src="erp4.png" alt="Relatórios do ERP" class="screenshot-wide" />
+        <div class="carousel" id="carousel-erp">
+          <div class="carousel-track" id="track-erp">
+            <div class="carousel-slide"><img src="erp1.png" alt="Vendas ERP" /></div>
+            <div class="carousel-slide"><img src="erp2.png" alt="Produtos ERP" /></div>
+            <div class="carousel-slide"><img src="erp3.png" alt="Estoque ERP" /></div>
+            <div class="carousel-slide"><img src="erp4.png" alt="Relatórios ERP" /></div>
+          </div>
+          <button class="carousel-btn prev" onclick="mover('erp', -1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="mover('erp', 1)">&#8594;</button>
+          <div class="carousel-dots" id="dots-erp">
+            <button class="carousel-dot active" onclick="irPara('erp', 0)"></button>
+            <button class="carousel-dot" onclick="irPara('erp', 1)"></button>
+            <button class="carousel-dot" onclick="irPara('erp', 2)"></button>
+            <button class="carousel-dot" onclick="irPara('erp', 3)"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -468,7 +559,6 @@
       <p class="footer-tagline">Empresa 100% remota</p>
       <p class="footer-location">Passos e Ribeirão Preto</p>
     </div>
-
     <div class="footer-col">
       <h4>Mapa do site</h4>
       <ul>
@@ -479,7 +569,6 @@
         <li><a href="#contato" onclick="scrollTo('contato',event)">Contato</a></li>
       </ul>
     </div>
-
     <div class="footer-col">
       <h4>Soluções</h4>
       <ul>
@@ -488,7 +577,6 @@
         <li><a href="#produtos" onclick="scrollTo('produtos',event)">ERP — Estoque e Vendas</a></li>
       </ul>
     </div>
-
     <div class="footer-social">
       <h4>Siga nosso trabalho</h4>
       <div class="footer-social-icons">
@@ -506,7 +594,6 @@
       <a href="mailto:sistematizaai@gmail.com" class="footer-contact-email">sistematizaai@gmail.com</a>
     </div>
   </div>
-
   <div class="footer-bottom">
     <span class="footer-copy">© 2026 sistematiza.ai — Todos os direitos reservados.</span>
     <div class="footer-bottom-links">
@@ -517,6 +604,7 @@
 </footer>
 
 <script>
+  // Scroll suave
   function scrollTo(id, e) {
     e.preventDefault();
     const el = document.getElementById(id);
@@ -524,8 +612,12 @@
     const top = el.getBoundingClientRect().top + window.pageYOffset - 72;
     window.scrollTo({ top, behavior: 'smooth' });
   }
+
+  // Navbar
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); });
+
+  // Reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
@@ -533,6 +625,32 @@
     });
   }, { threshold: 0.1 });
   reveals.forEach(r => observer.observe(r));
+
+  // Carrossel
+  const estado = { os: 0, cmd: 0, erp: 0 };
+  const totais = { os: 4, cmd: 4, erp: 4 };
+
+  function atualizar(id) {
+    const track = document.getElementById('track-' + id);
+    const dots = document.querySelectorAll('#dots-' + id + ' .carousel-dot');
+    track.style.transform = `translateX(-${estado[id] * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === estado[id]));
+  }
+
+  function mover(id, dir) {
+    estado[id] = (estado[id] + dir + totais[id]) % totais[id];
+    atualizar(id);
+  }
+
+  function irPara(id, idx) {
+    estado[id] = idx;
+    atualizar(id);
+  }
+
+  // Auto-play suave
+  setInterval(() => { mover('os',  1); }, 4000);
+  setInterval(() => { mover('cmd', 1); }, 4500);
+  setInterval(() => { mover('erp', 1); }, 5000);
 </script>
 </body>
 </html>
