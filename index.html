@@ -106,15 +106,20 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.08); }
 .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); animation: fadeUp 0.8s 0.4s ease both; }
 .hero-stat-num { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800; color: var(--green); line-height: 1; letter-spacing: -0.03em; }
 .hero-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 4px; line-height: 1.4; }
-.hero-visual { animation: fadeUp 0.8s 0.2s ease both; }
-.hero-mockup {
-  border-radius: 16px; overflow: hidden;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(46,204,113,0.15);
-  transform: perspective(1200px) rotateY(-6deg) rotateX(3deg);
-  transition: transform 0.4s ease;
+
+/* HERO VISUAL — logo gigante em background */
+.hero-visual {
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeUp 0.8s 0.2s ease both;
+  position: relative;
 }
-.hero-mockup:hover { transform: perspective(1200px) rotateY(-2deg) rotateX(1deg); }
-.hero-mockup img { width: 100%; display: block; }
+.hero-logo-bg {
+  width: 100%; max-width: 540px;
+  opacity: 0.07;
+  filter: invert(1);
+  user-select: none; pointer-events: none;
+  animation: pulse 10s ease-in-out infinite;
+}
 
 /* TICKER */
 .ticker-section { background: var(--ink2); overflow: hidden; border-top: 1px solid rgba(255,255,255,0.05); }
@@ -314,11 +319,9 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
       </svg>
       <span>sistematiza<span class="logo-ai">.ai</span></span>
     </div>
-
     <div id="formArea">
       <h2>Fale com a gente 👋</h2>
       <p class="modal-sub">Preencha o formulário e nossa equipe entra em contato em breve para entender melhor o que você precisa.</p>
-
       <div class="form-row">
         <div class="form-group">
           <label>Nome *</label>
@@ -329,17 +332,14 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
           <input type="tel" id="f_telefone" placeholder="(00) 00000-0000" required />
         </div>
       </div>
-
       <div class="form-group">
         <label>E-mail *</label>
         <input type="email" id="f_email" placeholder="seu@email.com" required />
       </div>
-
       <div class="form-group">
         <label>Nome do estabelecimento</label>
         <input type="text" id="f_empresa" placeholder="Ex: Mercado do João, Bar do Zé..." />
       </div>
-
       <div class="form-group">
         <label>O que você precisa? *</label>
         <select id="f_interesse" required>
@@ -351,17 +351,14 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
           <option value="Não sei ainda, quero conversar com um especialista">Não sei ainda — quero conversar com um especialista</option>
         </select>
       </div>
-
       <div class="form-group">
         <label>Conta mais (opcional)</label>
         <textarea id="f_mensagem" placeholder="Como funciona seu negócio hoje? Qual o maior problema que você quer resolver?"></textarea>
       </div>
-
       <button class="btn-submit" id="btnEnviar" onclick="enviarFormulario()">
         Quero um orçamento →
       </button>
     </div>
-
     <div id="successArea" class="form-success" style="display:none;">
       <div class="success-icon">✅</div>
       <h3>Mensagem enviada!</h3>
@@ -397,7 +394,8 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
   <div class="hero-glow2"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-tag">Soluções prontas para uso · Desenvolvimento sob demanda</div>
+      <!-- ✅ ALTERAÇÃO 1: tag trocada -->
+      <div class="hero-tag">Olá, somos a Sistematiza<span style="color:var(--green)">.ai</span></div>
       <h1>Existe um sistema<br>para cada <em>problema.</em></h1>
       <p class="hero-sub">A sistematiza<span style="color:var(--green)">.ai</span> desenvolve e comercializa sistemas digitais para pequenos e médios negócios — temos soluções prontas para os desafios mais comuns e criamos sob medida para o que for diferente.</p>
       <div class="hero-btns">
@@ -419,10 +417,9 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
         </div>
       </div>
     </div>
+    <!-- ✅ ALTERAÇÃO 2: logo gigante em background no lugar do screen1.png -->
     <div class="hero-visual">
-      <div class="hero-mockup">
-        <img src="screen1.png" alt="Sistema sistematiza.ai" />
-      </div>
+      <img class="hero-logo-bg" src="logo_bg.png" alt="" aria-hidden="true" />
     </div>
   </div>
 </section>
@@ -430,9 +427,7 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
 <!-- TICKER -->
 <div class="ticker-section">
   <div class="ticker-wrap">
-    <div class="ticker-label-box">
-      <span>Para quem é</span>
-    </div>
+    <div class="ticker-label-box"><span>Para quem é</span></div>
     <div class="ticker-overflow">
       <div class="ticker-track">
         <div class="ticker-item">Mercados & Mercearias</div>
@@ -445,7 +440,6 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
         <div class="ticker-item">Autônomos & MEI</div>
         <div class="ticker-item">Papelarias & Livrarias</div>
         <div class="ticker-item">Espetinhos & Lanchonetes</div>
-        <!-- duplicado para loop contínuo -->
         <div class="ticker-item">Mercados & Mercearias</div>
         <div class="ticker-item">Bares & Restaurantes</div>
         <div class="ticker-item">Oficinas & Técnicos</div>
@@ -516,38 +510,14 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
       <p class="reveal">Resultados observados nos primeiros meses de uso dos sistemas sistematiza<span style="color:var(--green)">.ai</span>.</p>
     </div>
     <div class="numeros-grid">
-      <div class="numero-item reveal">
-        <div class="numero-val">8h+</div>
-        <div class="numero-label">economizadas por semana em anotações, buscas e conferências manuais</div>
-      </div>
-      <div class="numero-item reveal">
-        <div class="numero-val">+35%</div>
-        <div class="numero-label">a mais de receita recuperada com controle de cobranças pendentes</div>
-      </div>
-      <div class="numero-item reveal">
-        <div class="numero-val">0</div>
-        <div class="numero-label">cobranças esquecidas — o sistema avisa quando tem conta aberta</div>
-      </div>
-      <div class="numero-item reveal">
-        <div class="numero-val">3x</div>
-        <div class="numero-label">mais rápido fechar o caixa do dia com as informações organizadas</div>
-      </div>
-      <div class="numero-item reveal">
-        <div class="numero-val">-90%</div>
-        <div class="numero-label">menos erros de estoque após começar a registrar entradas e saídas</div>
-      </div>
-      <div class="numero-item reveal">
-        <div class="numero-val">+40%</div>
-        <div class="numero-label">no valor médio por mesa em bares e restaurantes com controle de comanda</div>
-      </div>
-      <div class="numero-item reveal">
-        <div class="numero-val">100%</div>
-        <div class="numero-label">dos clientes sabem exatamente o que devem — sem discussão na hora de pagar</div>
-      </div>
-      <div class="numero-item reveal">
-        <div class="numero-val">1</div>
-        <div class="numero-label">tela para ver tudo: vendas, estoque, clientes e contas a receber — sem planilha</div>
-      </div>
+      <div class="numero-item reveal"><div class="numero-val">8h+</div><div class="numero-label">economizadas por semana em anotações, buscas e conferências manuais</div></div>
+      <div class="numero-item reveal"><div class="numero-val">+35%</div><div class="numero-label">a mais de receita recuperada com controle de cobranças pendentes</div></div>
+      <div class="numero-item reveal"><div class="numero-val">0</div><div class="numero-label">cobranças esquecidas — o sistema avisa quando tem conta aberta</div></div>
+      <div class="numero-item reveal"><div class="numero-val">3x</div><div class="numero-label">mais rápido fechar o caixa do dia com as informações organizadas</div></div>
+      <div class="numero-item reveal"><div class="numero-val">-90%</div><div class="numero-label">menos erros de estoque após começar a registrar entradas e saídas</div></div>
+      <div class="numero-item reveal"><div class="numero-val">+40%</div><div class="numero-label">no valor médio por mesa em bares e restaurantes com controle de comanda</div></div>
+      <div class="numero-item reveal"><div class="numero-val">100%</div><div class="numero-label">dos clientes sabem exatamente o que devem — sem discussão na hora de pagar</div></div>
+      <div class="numero-item reveal"><div class="numero-val">1</div><div class="numero-label">tela para ver tudo: vendas, estoque, clientes e contas a receber — sem planilha</div></div>
     </div>
   </div>
 </section>
@@ -638,12 +608,12 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
           <span class="produto-badge">✅ Disponível agora</span>
           <h3>ERP — Estoque, Vendas e Gestão</h3>
           <p class="tagline">Para mercados, farmácias e comércios que precisam saber o que têm, o que venderam e o que precisam repor.</p>
-          <p>Um sistema completo de gestão do negócio — sem a complexidade dos sistemas grandes. Você controla o estoque, registra as vendas, gerencia os clientes, organiza o fiado e acompanha o lucro. Tudo em um lugar só, sem planilha, sem caderno.</p>
+          <p>Um sistema completo de gestão do negócio — sem a complexidade dos sistemas grandes. Você controla o estoque, registra as vendas, gerencia os clientes e acompanha o lucro. Tudo em um lugar só, sem planilha, sem caderno.</p>
           <ul class="produto-bullets">
             <li>Cadastro de produtos com código de barras, preço de custo e margem de lucro</li>
             <li>Alerta automático quando um produto está acabando no estoque</li>
             <li>Venda no balcão: busca por nome ou código de barras, carrinho e finalização rápida</li>
-            <li>Controle de fiado: parcelas, datas de vencimento e quem deve quanto</li>
+            <li>Controle de contas a receber: parcelas, datas de vencimento e saldo por cliente</li>
             <li>Cadastro de clientes e fornecedores com histórico de compras</li>
             <li>Relatório de vendas, lucro estimado e quanto vale seu estoque hoje</li>
           </ul>
@@ -780,98 +750,44 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
 </footer>
 
 <script>
-// ── EmailJS init ──
-// INSTRUÇÕES: crie uma conta em emailjs.com, configure um serviço Gmail
-// e substitua os 3 valores abaixo pelos seus IDs reais.
-const EJS_PUBLIC_KEY  = 'KLG6S0m6drCdr1b3s';   // Account > API Keys
-const EJS_SERVICE_ID  = 'service_g79sxyd';   // Email Services
-const EJS_TEMPLATE_ID = 'template_wk80blq';  // Email Templates
-
+const EJS_PUBLIC_KEY  = 'KLG6S0m6drCdr1b3s';
+const EJS_SERVICE_ID  = 'service_g79sxyd';
+const EJS_TEMPLATE_ID = 'template_wk80blq';
 emailjs.init({ publicKey: EJS_PUBLIC_KEY });
 
-// ── Modal ──
-function abrirModal() {
-  document.getElementById('modalContato').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function fecharModal() {
-  document.getElementById('modalContato').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('modalContato').addEventListener('click', function(e) {
-  if (e.target === this) fecharModal();
-});
+function abrirModal() { document.getElementById('modalContato').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function fecharModal() { document.getElementById('modalContato').classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('modalContato').addEventListener('click', function(e) { if (e.target === this) fecharModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
 
-// ── Envio de formulário ──
 async function enviarFormulario() {
-  const nome      = document.getElementById('f_nome').value.trim();
-  const telefone  = document.getElementById('f_telefone').value.trim();
-  const email     = document.getElementById('f_email').value.trim();
-  const empresa   = document.getElementById('f_empresa').value.trim();
-  const interesse = document.getElementById('f_interesse').value;
-  const mensagem  = document.getElementById('f_mensagem').value.trim();
-
-  if (!nome || !telefone || !email || !interesse) {
-    alert('Por favor, preencha nome, WhatsApp, e-mail e o que você precisa.');
-    return;
-  }
-
+  const nome     = document.getElementById('f_nome').value.trim();
+  const telefone = document.getElementById('f_telefone').value.trim();
+  const email    = document.getElementById('f_email').value.trim();
+  const empresa  = document.getElementById('f_empresa').value.trim();
+  const interesse= document.getElementById('f_interesse').value;
+  const mensagem = document.getElementById('f_mensagem').value.trim();
+  if (!nome || !telefone || !email || !interesse) { alert('Por favor, preencha nome, WhatsApp, e-mail e o que você precisa.'); return; }
   const btn = document.getElementById('btnEnviar');
-  btn.disabled = true;
-  btn.textContent = 'Enviando...';
-
+  btn.disabled = true; btn.textContent = 'Enviando...';
   try {
-    await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
-      from_name:  nome,
-      telefone:   telefone,
-      from_email: email,
-      empresa:    empresa || '—',
-      interesse:  interesse,
-      mensagem:   mensagem || '—',
-      to_email:   'sistematizaai@gmail.com',
-    });
+    await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, { from_name: nome, telefone, from_email: email, empresa: empresa||'—', interesse, mensagem: mensagem||'—', to_email: 'sistematizaai@gmail.com' });
     document.getElementById('formArea').style.display = 'none';
     document.getElementById('successArea').style.display = 'block';
   } catch (err) {
-    // Fallback: abre o cliente de email do usuário
-    const assunto = encodeURIComponent(`[sistematiza.ai] Orçamento — ${interesse}`);
-    const corpo   = encodeURIComponent(
-      `Nome: ${nome}\nWhatsApp: ${telefone}\nE-mail: ${email}\nEstabelecimento: ${empresa || '—'}\nInteresse: ${interesse}\n\nMensagem:\n${mensagem || '—'}`
-    );
-    window.location.href = `mailto:sistematizaai@gmail.com?subject=${assunto}&body=${corpo}`;
+    const a = encodeURIComponent(`[sistematiza.ai] Orçamento — ${interesse}`);
+    const b = encodeURIComponent(`Nome: ${nome}\nWhatsApp: ${telefone}\nE-mail: ${email}\nEstabelecimento: ${empresa||'—'}\nInteresse: ${interesse}\n\nMensagem:\n${mensagem||'—'}`);
+    window.location.href = `mailto:sistematizaai@gmail.com?subject=${a}&body=${b}`;
     document.getElementById('formArea').style.display = 'none';
     document.getElementById('successArea').style.display = 'block';
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Quero um orçamento →';
-  }
+  } finally { btn.disabled = false; btn.textContent = 'Quero um orçamento →'; }
 }
 
-// ── Scroll suave ──
-function sv(id, e) {
-  if (e) e.preventDefault();
-  const el = document.getElementById(id);
-  if (!el) return;
-  window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 72, behavior: 'smooth' });
-}
-
-// ── Navbar ──
+function sv(id, e) { if (e) e.preventDefault(); const el = document.getElementById(id); if (!el) return; window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 72, behavior: 'smooth' }); }
 const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
-
-// ── Reveal on scroll ──
-const ro = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-      ro.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.08 });
+const ro = new IntersectionObserver((entries) => { entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); ro.unobserve(e.target); } }); }, { threshold: 0.08 });
 document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(r => ro.observe(r));
-
-// ── Carrossel ──
 const estado = { os: 0, cmd: 0, erp: 0 };
 const totais  = { os: 4, cmd: 4, erp: 4 };
 function atualizar(id) {
