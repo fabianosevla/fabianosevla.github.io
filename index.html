@@ -74,6 +74,7 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.08); }
 @keyframes scrollLeft { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
 .hero-inner { position: relative; z-index: 1; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+.hero-inner > div:first-child { display: flex; flex-direction: column; align-items: flex-start; padding-left: 8vw; }
 .hero-tag {
   display: inline-flex; align-items: center; gap: 0.5rem;
   background: rgba(46,204,113,0.12); color: var(--green);
@@ -521,7 +522,7 @@ footer { background: #050505; padding: 4.5rem 6vw 2rem; border-top: 1px solid #1
 <section class="section produtos" id="produtos">
   <div>
     <span class="section-label reveal">Nossas soluções</span>
-    <h2 class="reveal">Soluções já desenvolvidas.<br>Uma para cada tipo de <span class="green">negócio.</span></h2>
+    <h2 class="reveal">Soluções desenvolvidas.<br>Uma para cada tipo de <span class="green">negócio.</span></h2>
     <p class="section-sub reveal">Amplifique a experiência dos seus clientes e da sua equipe. Cada solução é construída com tecnologia sob medida para o seu tipo de negócio — eficiente, com a sua cara e pronta para crescer com você.</p>
 
     <!-- OS -->
