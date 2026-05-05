@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sistematiza.ai</title>
+<title>Sistematiza.ai — Premium Dark</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   :root{
@@ -21,25 +23,21 @@
   body{overflow-x:hidden}
   a{color:inherit;text-decoration:none}
   button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
-  .mono{font-family:'Geist Mono',monospace;letter-spacing:0}
 
   .grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 80%)}
 
-  /* NAV */
-  .nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 5vw;background:rgba(7,9,10,0.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+  .nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(7,9,10,0.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
   .nav-logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
   .nav-logo svg{width:20px;height:20px;color:var(--green)}
   .nav-mid{display:flex;gap:4px;font-size:13px}
   .nav-mid a{padding:8px 14px;border-radius:8px;color:var(--muted);transition:all .15s}
   .nav-mid a:hover{color:var(--fg);background:var(--bg-3)}
   .nav-right{display:flex;gap:8px;align-items:center}
-  .nav-cta{background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:all .15s;cursor:pointer}
+  .nav-cta{background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:all .15s}
   .nav-cta:hover{background:var(--green);color:var(--bg)}
 
-  /* CONTAINER — alargado */
-  .container{max-width:1440px;margin:0 auto;padding:0 5vw;position:relative;z-index:1}
+  .container{max-width:1280px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
 
-  /* HERO */
   .hero{position:relative;padding:90px 0 100px;overflow:hidden}
   .hero::before{content:'';position:absolute;width:1000px;height:1000px;border-radius:50%;background:radial-gradient(circle,var(--green-glow) 0%,transparent 60%);top:-400px;left:50%;transform:translateX(-50%);pointer-events:none}
   .hero-pill{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;background:var(--bg-3);border:1px solid var(--line-2);font-size:13px;color:var(--muted);margin-bottom:32px}
@@ -47,9 +45,9 @@
   .hero-pill .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
   .hero h1{font-size:clamp(48px,7vw,96px);font-weight:600;letter-spacing:-0.04em;line-height:1;margin-bottom:28px;text-wrap:balance;background:linear-gradient(180deg,#fff 0%,#98a39e 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--green) 0%,oklch(0.85 0.15 145) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .hero-sub{font-size:19px;line-height:1.55;color:var(--muted);max-width:620px;margin-bottom:40px;text-wrap:pretty}
+  .hero-sub{font-size:19px;line-height:1.55;color:var(--muted);max-width:600px;margin-bottom:40px;text-wrap:pretty}
   .hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:60px}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:10px;font-size:14px;font-weight:500;transition:all .2s;cursor:pointer;border:none;font-family:inherit}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:10px;font-size:14px;font-weight:500;transition:all .2s}
   .btn-primary{background:var(--green);color:var(--bg);box-shadow:0 0 0 1px var(--green),0 12px 30px -8px var(--green-glow)}
   .btn-primary:hover{transform:translateY(-1px);box-shadow:0 0 0 1px var(--green),0 18px 40px -8px var(--green-glow)}
   .btn-secondary{background:var(--bg-3);color:var(--fg);border:1px solid var(--line-2)}
@@ -57,12 +55,11 @@
   .btn .arrow{transition:transform .2s}
   .btn:hover .arrow{transform:translateX(2px)}
 
-  /* CAROUSEL */
-  .dash-carousel{position:relative;margin:60px auto 0;max-width:100%}
+  .dash-carousel{position:relative;margin:60px auto 0;max-width:1200px}
   .dash-carousel::before{content:'';position:absolute;inset:-40px;z-index:-1;background:radial-gradient(ellipse at 50% 30%,var(--green-glow) 0%,transparent 60%);pointer-events:none}
-  .dc-viewport{overflow:hidden;mask-image:linear-gradient(90deg,transparent 0%,#000 3%,#000 97%,transparent 100%)}
+  .dc-viewport{overflow:hidden;mask-image:linear-gradient(90deg,transparent 0%,#000 4%,#000 96%,transparent 100%)}
   .dc-track{display:flex;gap:24px;transition:transform .6s cubic-bezier(.6,.05,.25,1);will-change:transform}
-  .dc-slide{flex:0 0 calc(78% - 12px);position:relative}
+  .dc-slide{flex:0 0 calc(75% - 12px);position:relative}
   .dc-slide::before{content:attr(data-tag);position:absolute;top:-32px;left:0;font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.15em;padding-left:14px;border-left:2px solid var(--green)}
   .dc-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:44px;height:44px;border-radius:50%;background:var(--bg-2);border:1px solid var(--line-2);color:var(--fg);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px -8px rgba(0,0,0,0.6);transition:all .2s}
   .dc-nav:hover{background:var(--green);color:var(--bg);border-color:var(--green)}
@@ -75,34 +72,6 @@
   .hero-dash{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:auto auto;gap:16px}
   .hd-main{grid-row:1/span 2;grid-column:1;display:flex;flex-direction:column;gap:24px}
   .hd-side{grid-column:2}
-  .hd-panel{background:linear-gradient(180deg,#11181a 0%,#0a0e10 100%);border:1px solid var(--line-2);border-radius:16px;padding:24px;position:relative;overflow:hidden;box-shadow:0 40px 80px -20px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.04)}
-  .hd-head{display:flex;justify-content:space-between;align-items:center}
-  .hd-title-wrap{display:flex;align-items:center;gap:10px}
-  .hd-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
-  .hd-title{font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.15em}
-  .hd-tabs{display:flex;gap:2px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:3px}
-  .hd-tabs span{padding:5px 12px;font-size:11px;color:var(--muted);border-radius:6px;cursor:default;font-weight:500}
-  .hd-tabs span.active{background:var(--bg-3);color:var(--fg)}
-  .hd-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  .hd-kpi{background:var(--bg-2);padding:16px 14px;display:flex;flex-direction:column;gap:6px}
-  .hd-kpi-l{font-size:11px;color:var(--muted);font-family:'Geist Mono',monospace;text-transform:uppercase;letter-spacing:0.1em}
-  .hd-kpi-v{font-size:24px;font-weight:600;letter-spacing:-0.02em;color:var(--fg);line-height:1}
-  .hd-kpi-d{font-size:11px;color:var(--muted);display:flex;align-items:baseline;gap:6px;font-weight:600}
-  .hd-kpi-d span{font-weight:400;color:var(--muted-2)}
-  .hd-kpi-d.up{color:var(--green)}.hd-kpi-d.down{color:#d97757}
-  .hd-chart{display:flex;flex-direction:column;gap:10px}
-  .hd-chart-head{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--muted);font-family:'Geist Mono',monospace;text-transform:uppercase;letter-spacing:0.1em}
-  .hd-chart-num{color:var(--fg);font-size:14px;font-weight:600;letter-spacing:0;text-transform:none}
-  .hd-chart-svg{width:100%;height:130px;display:block}
-  .hd-chart-axis{display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:10px;color:var(--muted-2);text-transform:uppercase;letter-spacing:0.1em}
-  .hd-side-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.15em}
-  .hd-pill{padding:3px 10px;border-radius:999px;background:var(--green-glow);color:var(--green);font-size:10px;font-weight:700}
-  .hd-pill.warn{background:rgba(217,119,87,0.15);color:#d97757}
-  .hd-rows{display:flex;flex-direction:column;gap:12px}
-  .hd-row{display:grid;grid-template-columns:50px 1fr auto;align-items:center;gap:12px;font-size:13px}
-  .hd-bar{height:6px;background:var(--bg-3);border-radius:3px;overflow:hidden;display:block}
-  .hd-bar i{display:block;height:100%;background:var(--green);border-radius:3px}
-  .hd-row-l{color:var(--fg);font-weight:500}.hd-row-v{color:var(--muted);font-family:'Geist Mono',monospace;font-size:12px}
   .hd-rank{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:8px 0}
   .hd-rank-n{width:24px;height:24px;border-radius:6px;background:var(--green-glow);color:var(--green);display:flex;align-items:center;justify-content:center;font-family:'Geist Mono',monospace;font-size:11px;font-weight:700}
   .hd-rank-info{display:flex;flex-direction:column;gap:2px;font-size:13px}
@@ -147,12 +116,41 @@
   .hd-os-st.aberta{background:rgba(255,255,255,0.06);color:var(--fg)}
   .hd-os-st.pendente{background:rgba(217,119,87,0.15);color:#d97757}
   .hd-os-v{font-family:'Geist Mono',monospace;font-size:14px;color:var(--green);font-weight:600}
+  @media(max-width:880px){.hero-dash{grid-template-columns:1fr}.hd-main{grid-row:auto;grid-column:auto}.hd-side{grid-column:auto}.hd-kpis,.hd-tables{grid-template-columns:repeat(2,1fr)}.dc-slide{flex:0 0 92%}.dc-nav{display:none}}
+  .hd-panel{background:linear-gradient(180deg,#11181a 0%,#0a0e10 100%);border:1px solid var(--line-2);border-radius:16px;padding:24px;position:relative;overflow:hidden;box-shadow:0 40px 80px -20px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.04)}
+  .hd-head{display:flex;justify-content:space-between;align-items:center}
+  .hd-title-wrap{display:flex;align-items:center;gap:10px}
+  .hd-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  .hd-title{font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.15em}
+  .hd-tabs{display:flex;gap:2px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:3px}
+  .hd-tabs span{padding:5px 12px;font-size:11px;color:var(--muted);border-radius:6px;cursor:default;font-weight:500}
+  .hd-tabs span.active{background:var(--bg-3);color:var(--fg)}
+  .hd-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .hd-kpi{background:var(--bg-2);padding:16px 14px;display:flex;flex-direction:column;gap:6px}
+  .hd-kpi-l{font-size:11px;color:var(--muted);font-family:'Geist Mono',monospace;text-transform:uppercase;letter-spacing:0.1em}
+  .hd-kpi-v{font-size:24px;font-weight:600;letter-spacing:-0.02em;color:var(--fg);line-height:1}
+  .hd-kpi-d{font-size:11px;color:var(--muted);display:flex;align-items:baseline;gap:6px;font-weight:600}
+  .hd-kpi-d span{font-weight:400;color:var(--muted-2)}
+  .hd-kpi-d.up{color:var(--green)}.hd-kpi-d.down{color:#d97757}
+  .hd-chart{display:flex;flex-direction:column;gap:10px}
+  .hd-chart-head{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--muted);font-family:'Geist Mono',monospace;text-transform:uppercase;letter-spacing:0.1em}
+  .hd-chart-num{color:var(--fg);font-size:14px;font-weight:600;letter-spacing:0;text-transform:none}
+  .hd-chart-svg{width:100%;height:130px;display:block}
+  .hd-chart-axis{display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:10px;color:var(--muted-2);text-transform:uppercase;letter-spacing:0.1em}
+  .hd-side-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.15em}
+  .hd-pill{padding:3px 10px;border-radius:999px;background:var(--green-glow);color:var(--green);font-size:10px;font-weight:700}
+  .hd-pill.warn{background:rgba(217,119,87,0.15);color:#d97757}
+  .hd-rows{display:flex;flex-direction:column;gap:12px}
+  .hd-row{display:grid;grid-template-columns:50px 1fr auto;align-items:center;gap:12px;font-size:13px}
+  .hd-bar{height:6px;background:var(--bg-3);border-radius:3px;overflow:hidden;display:block}
+  .hd-bar i{display:block;height:100%;background:var(--green);border-radius:3px}
+  .hd-row-l{color:var(--fg);font-weight:500}.hd-row-v{color:var(--muted);font-family:'Geist Mono',monospace;font-size:12px}
+  @media(max-width:880px){.hd-kpis{grid-template-columns:repeat(2,1fr)}}
 
   .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:48px;margin-top:48px;border-top:1px solid var(--line)}
   .hero-stat .v{font-size:36px;font-weight:600;letter-spacing:-0.03em;color:var(--green);line-height:1}
   .hero-stat .l{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.4}
 
-  /* TICKER */
   .ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;overflow:hidden;background:var(--bg-2);position:relative}
   .ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
   .ticker::before{left:0;background:linear-gradient(90deg,var(--bg-2),transparent)}
@@ -162,15 +160,13 @@
   .ticker-track span::after{content:'◆';color:var(--green);font-size:8px}
   @keyframes scroll{to{transform:translateX(-50%)}}
 
-  /* SECTIONS */
   .section{padding:120px 0;position:relative}
   .section-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:18px}
   .section-eyebrow::before{content:'';width:24px;height:1px;background:var(--green)}
-  .section-h{font-size:clamp(36px,4.5vw,64px);font-weight:600;letter-spacing:-0.03em;line-height:1.05;text-wrap:balance;margin-bottom:20px;max-width:860px}
+  .section-h{font-size:clamp(36px,4.5vw,64px);font-weight:600;letter-spacing:-0.03em;line-height:1.05;text-wrap:balance;margin-bottom:20px;max-width:800px}
   .section-h em{font-style:normal;color:var(--green)}
-  .section-sub{font-size:17px;color:var(--muted);max-width:680px;line-height:1.55;margin-bottom:64px}
+  .section-sub{font-size:17px;color:var(--muted);max-width:600px;line-height:1.55;margin-bottom:64px}
 
-  /* STEPS */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
   .step{background:var(--bg);padding:36px 32px;transition:background .2s;position:relative;min-height:280px;display:flex;flex-direction:column}
   .step:hover{background:var(--bg-2)}
@@ -179,7 +175,6 @@
   .step h3{font-size:19px;font-weight:600;letter-spacing:-0.01em;margin-bottom:10px}
   .step p{font-size:14px;color:var(--muted);line-height:1.6}
 
-  /* COMPARE */
   .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px;align-items:stretch}
   .compare-card{border-radius:20px;padding:40px;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:520px}
   .compare-before{background:linear-gradient(180deg,#1a1612 0%,#0e0c0a 100%);border:1px solid rgba(180,140,80,0.2)}
@@ -194,7 +189,6 @@
   .compare-before .ic{background:rgba(180,140,80,0.12);color:#a89878}.compare-after .ic{background:var(--green-glow);color:var(--green)}
   .compare-before li{color:#9a8e75}.compare-after li{color:var(--fg)}
 
-  /* CASOS */
   .cases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
   .case{background:linear-gradient(180deg,var(--bg-2) 0%,var(--bg) 100%);border:1px solid var(--line-2);border-radius:18px;padding:32px 28px;position:relative;overflow:hidden;transition:all .25s}
   .case:hover{border-color:var(--green-2);transform:translateY(-4px)}
@@ -206,7 +200,6 @@
   .case .who{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--line);font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em}
   .case .who b{color:var(--green);font-weight:600}
 
-  /* PRODUTOS */
   .products{display:flex;flex-direction:column;gap:24px;margin-top:48px}
   .product{border:1px solid var(--line-2);border-radius:24px;overflow:hidden;background:var(--bg-2);display:grid;grid-template-columns:1fr 1.1fr;transition:border-color .25s}
   .product:hover{border-color:rgba(255,255,255,0.18)}
@@ -231,7 +224,6 @@
   .phone{position:absolute;right:-20px;bottom:20px;z-index:2;width:140px;border-radius:18px;border:6px solid #1a1f21;box-shadow:0 20px 50px -10px rgba(0,0,0,0.8);overflow:hidden;transform:rotate(4deg)}
   .phone img{display:block;width:100%}
 
-  /* DEPO */
   .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
   .quote{background:var(--bg-2);border:1px solid var(--line-2);border-radius:16px;padding:28px 26px;display:flex;flex-direction:column}
   .quote .stars{color:var(--green);font-size:13px;letter-spacing:2px;margin-bottom:16px}
@@ -241,8 +233,7 @@
   .quote .who b{display:block;font-size:13px;color:var(--fg);font-weight:500}
   .quote .who span{font-size:11px;color:var(--muted);font-family:'Geist Mono',monospace;text-transform:uppercase;letter-spacing:0.08em}
 
-  /* CTA */
-  .cta{margin:80px 5vw 24px;border-radius:32px;background:radial-gradient(ellipse at 30% 20%,var(--green-glow) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,oklch(0.55 0.14 155 / 0.2) 0%,transparent 50%),linear-gradient(180deg,#0c1614 0%,#050807 100%);border:1px solid var(--line-2);padding:100px 60px;text-align:center;position:relative;overflow:hidden}
+  .cta{margin:80px 24px 24px;border-radius:32px;background:radial-gradient(ellipse at 30% 20%,var(--green-glow) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,oklch(0.55 0.14 155 / 0.2) 0%,transparent 50%),linear-gradient(180deg,#0c1614 0%,#050807 100%);border:1px solid var(--line-2);padding:100px 60px;text-align:center;position:relative;overflow:hidden}
   .cta::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse at 50% 50%,transparent 0%,#000 80%);pointer-events:none}
   .cta-inner{position:relative;max-width:800px;margin:0 auto}
   .cta .pre{font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:24px}
@@ -251,45 +242,42 @@
   .cta p{font-size:17px;color:var(--muted);max-width:560px;margin:0 auto 36px}
   .cta-actions{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
 
-  /* FOOTER */
-  footer{padding:60px 5vw 32px;border-top:1px solid var(--line)}
-  .foot-grid{max-width:100%;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--line)}
+  footer{padding:60px 24px 32px;border-top:1px solid var(--line)}
+  .foot-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--line)}
   .foot-grid h5{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
   .foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:8px}
   .foot-grid a{font-size:14px;color:var(--muted);transition:color .15s}
   .foot-grid a:hover{color:var(--fg)}
-  .foot-brand p{font-size:14px;color:var(--muted);max-width:380px;line-height:1.6;margin-top:14px}
-  .foot-bot{max-width:100%;margin:0 auto;padding-top:24px;display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted-2);text-transform:uppercase;letter-spacing:0.1em}
+  .foot-brand p{font-size:14px;color:var(--muted);max-width:340px;line-height:1.6;margin-top:14px}
+  .foot-bot{max-width:1280px;margin:0 auto;padding-top:24px;display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted-2);text-transform:uppercase;letter-spacing:0.1em}
 
-  /* MODAL */
-  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity 0.25s}
+  /* ── MODAL ── */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .25s}
   .modal-overlay.open{opacity:1;pointer-events:all}
-  .modal-box{background:#0d1112;border:1px solid var(--line-2);border-radius:20px;padding:40px;max-width:520px;width:100%;box-shadow:0 40px 80px rgba(0,0,0,0.6);position:relative;transform:translateY(20px);transition:transform 0.25s;max-height:90vh;overflow-y:auto}
+  .modal-box{background:#0d1112;border:1px solid var(--line-2);border-radius:20px;padding:40px;max-width:520px;width:100%;box-shadow:0 40px 80px rgba(0,0,0,0.7),inset 0 1px 0 rgba(255,255,255,0.04);position:relative;transform:translateY(20px);transition:transform .25s;max-height:90vh;overflow-y:auto}
   .modal-overlay.open .modal-box{transform:translateY(0)}
-  .modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--bg-3);border:1px solid var(--line-2);cursor:pointer;font-size:16px;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+  .modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--bg-3);border:1px solid var(--line-2);cursor:pointer;font-size:16px;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:all .2s}
   .modal-close:hover{background:var(--bg);color:var(--fg)}
-  .modal-logo{display:flex;align-items:center;gap:8px;margin-bottom:24px}
-  .modal-logo span{font-family:'Geist',sans-serif;font-weight:600;font-size:1rem;color:var(--fg)}
-  .modal-logo .logo-ai{color:var(--green)}
-  .modal-box h2{font-size:1.5rem;font-weight:700;color:var(--fg);margin-bottom:6px;letter-spacing:-0.02em}
-  .modal-box p.modal-sub{font-size:0.88rem;color:var(--muted);margin-bottom:28px;line-height:1.6}
-  .form-group{margin-bottom:16px}
-  .form-group label{font-size:0.72rem;font-weight:600;color:var(--muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist Mono',monospace}
-  .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--line-2);font-size:14px;color:var(--fg);outline:none;background:var(--bg-3);font-family:'Geist',sans-serif;transition:border-color 0.15s}
+  .modal-logo{display:flex;align-items:center;gap:8px;margin-bottom:24px;font-weight:600;font-size:15px}
+  .modal-logo svg{width:18px;height:18px;color:var(--green)}
+  .modal-box h2{font-size:1.5rem;font-weight:600;color:var(--fg);margin-bottom:6px;letter-spacing:-0.02em}
+  .modal-sub{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+  .form-group{margin-bottom:14px}
+  .form-group label{font-size:11px;font-weight:600;color:var(--muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.08em;font-family:'Geist Mono',monospace}
+  .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--line-2);font-size:14px;color:var(--fg);outline:none;background:var(--bg-3);font-family:'Geist',sans-serif;transition:border-color .15s}
   .form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted-2)}
-  .form-group select option{background:var(--bg-2)}
+  .form-group select option{background:var(--bg-2);color:var(--fg)}
   .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green)}
   .form-group textarea{resize:vertical;min-height:90px;line-height:1.5}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .btn-submit{width:100%;background:var(--green);color:var(--bg);border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Geist',sans-serif;transition:all 0.2s;margin-top:8px}
-  .btn-submit:hover{background:oklch(0.65 0.18 150);transform:translateY(-1px)}
-  .btn-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none}
-  .form-success{text-align:center;padding:20px 0}
-  .form-success .success-icon{font-size:3rem;margin-bottom:12px}
-  .form-success h3{font-size:1.3rem;font-weight:700;color:var(--fg);margin-bottom:8px}
-  .form-success p{font-size:0.9rem;color:var(--muted);line-height:1.6}
+  .btn-submit{width:100%;background:var(--green);color:var(--bg);border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Geist',sans-serif;transition:all .2s;margin-top:8px;letter-spacing:-0.01em}
+  .btn-submit:hover{transform:translateY(-1px);box-shadow:0 8px 24px -4px var(--green-glow)}
+  .btn-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none}
+  .form-success{text-align:center;padding:32px 0}
+  .form-success .s-icon{font-size:3rem;margin-bottom:16px}
+  .form-success h3{font-size:1.3rem;font-weight:600;color:var(--fg);margin-bottom:8px}
+  .form-success p{font-size:14px;color:var(--muted);line-height:1.6}
 
-  /* REVEAL */
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
 
@@ -303,17 +291,39 @@
     .product:nth-child(even) .product-visual{order:1}
     .foot-grid{grid-template-columns:1fr 1fr}
     .form-row{grid-template-columns:1fr}
-    .hd-kpis{grid-template-columns:repeat(2,1fr)}
-    .dc-slide{flex:0 0 92%}
-    .dc-nav{display:none}
   }
-  @media(max-width:600px){
-    .foot-grid{grid-template-columns:1fr}
-    .hero-stats{grid-template-columns:repeat(2,1fr)}
-  }
+
+  /* ── MODAL ── */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .25s}
+  .modal-overlay.open{opacity:1;pointer-events:all}
+  .modal-box{background:#0d1112;border:1px solid var(--line-2);border-radius:20px;padding:40px;max-width:520px;width:100%;box-shadow:0 40px 80px rgba(0,0,0,0.7),inset 0 1px 0 rgba(255,255,255,0.04);position:relative;transform:translateY(20px);transition:transform .25s;max-height:90vh;overflow-y:auto}
+  .modal-overlay.open .modal-box{transform:translateY(0)}
+  .modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--bg-3);border:1px solid var(--line-2);cursor:pointer;font-size:16px;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:all .2s}
+  .modal-close:hover{background:var(--bg);color:var(--fg)}
+  .modal-logo{display:flex;align-items:center;gap:8px;margin-bottom:24px;font-weight:600;font-size:15px}
+  .modal-logo svg{width:18px;height:18px;color:var(--green)}
+  .modal-box h2{font-size:1.5rem;font-weight:600;color:var(--fg);margin-bottom:6px;letter-spacing:-0.02em}
+  .modal-sub{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+  .form-group{margin-bottom:14px}
+  .form-group label{font-size:11px;font-weight:600;color:var(--muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.08em;font-family:'Geist Mono',monospace}
+  .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--line-2);font-size:14px;color:var(--fg);outline:none;background:var(--bg-3);font-family:'Geist',sans-serif;transition:border-color .15s}
+  .form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted-2)}
+  .form-group select option{background:var(--bg-2);color:var(--fg)}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green)}
+  .form-group textarea{resize:vertical;min-height:90px;line-height:1.5}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:600px){.form-row{grid-template-columns:1fr}}
+  .btn-submit{width:100%;background:var(--green);color:var(--bg);border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Geist',sans-serif;transition:all .2s;margin-top:8px;letter-spacing:-0.01em}
+  .btn-submit:hover{transform:translateY(-1px);box-shadow:0 8px 24px -4px var(--green-glow)}
+  .btn-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none}
+  .form-success{text-align:center;padding:32px 0}
+  .form-success .s-icon{font-size:3rem;margin-bottom:16px}
+  .form-success h3{font-size:1.3rem;font-weight:600;color:var(--fg);margin-bottom:8px}
+  .form-success p{font-size:14px;color:var(--muted);line-height:1.6}
 </style>
 </head>
 <body>
+
 <div class="grid-bg"></div>
 
 <!-- MODAL -->
@@ -321,14 +331,8 @@
   <div class="modal-box">
     <button class="modal-close" onclick="fecharModal()">✕</button>
     <div class="modal-logo">
-      <svg width="20" height="20" viewBox="0 0 100 100" fill="none" style="color:var(--green)">
-        <g transform="rotate(90,50,50)">
-          <path d="M25 22L8 50L25 78" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M75 22L92 50L75 78" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M63 10L37 90" stroke="currentColor" stroke-width="11" stroke-linecap="round"/>
-        </g>
-      </svg>
-      <span>sistematiza<span class="logo-ai">.ai</span></span>
+      <svg viewBox="0 0 100 100" fill="none"><g transform="rotate(90,50,50)"><path d="M25 22L8 50L25 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="M75 22L92 50L75 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="M63 10L37 90" stroke="currentColor" stroke-width="11" stroke-linecap="round"/></g></svg>
+      sistematiza<span style="color:var(--green)">.ai</span>
     </div>
     <div id="formArea">
       <h2>Fale com a gente 👋</h2>
@@ -354,7 +358,7 @@
       <button class="btn-submit" id="btnEnviar" onclick="enviarFormulario()">Quero um orçamento →</button>
     </div>
     <div id="successArea" class="form-success" style="display:none">
-      <div class="success-icon">✅</div>
+      <div class="s-icon">✅</div>
       <h3>Mensagem enviada!</h3>
       <p>Nossa equipe vai retornar em breve pelo WhatsApp ou e-mail informado. Obrigado pelo interesse!</p>
     </div>
@@ -364,13 +368,7 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-logo">
-    <svg viewBox="0 0 100 100" fill="none">
-      <g transform="rotate(90,50,50)">
-        <path d="M25 22L8 50L25 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/>
-        <path d="M75 22L92 50L75 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/>
-        <path d="M63 10L37 90" stroke="currentColor" stroke-width="11" stroke-linecap="round"/>
-      </g>
-    </svg>
+    <svg viewBox="0 0 100 100" fill="none"><g transform="rotate(90,50,50)"><path d="M25 22L8 50L25 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="M75 22L92 50L75 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="M63 10L37 90" stroke="currentColor" stroke-width="11" stroke-linecap="round"/></g></svg>
     <span>sistematiza<span style="color:var(--green)">.ai</span></span>
   </div>
   <div class="nav-mid">
@@ -387,10 +385,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div class="hero-pill">
-      <span class="badge">AO VIVO</span>
-      <span>Sistemas digitais para o seu negócio</span>
-    </div>
+    <div class="hero-pill"><span class="badge">AO VIVO</span><span>Sistemas digitais para o seu negócio</span></div>
     <h1>Existe um sistema<br>para <em>cada problema.</em></h1>
     <p class="hero-sub">Sistemas digitais que organizam sua operação e fazem seu negócio crescer de verdade — feitos por quem entende tanto de tecnologia quanto da rotina real do balcão, do salão, da oficina.</p>
     <div class="hero-cta">
@@ -403,8 +398,8 @@
       <button class="dc-nav next" aria-label="Próximo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
       <div class="dc-viewport">
         <div class="dc-track">
-          <!-- SLIDE ERP -->
-          <div class="dc-slide" data-tag="ERP · Estoque &amp; Vendas">
+          <!-- SLIDE 1: ERP -->
+          <div class="dc-slide" data-tag="ERP · Estoque & Vendas">
             <div class="hero-dash">
               <div class="hd-panel hd-main">
                 <div class="hd-head"><div class="hd-title-wrap"><span class="hd-dot"></span><span class="hd-title">ERP · Painel de hoje</span></div><div class="hd-tabs"><span class="active">Dia</span><span>Semana</span><span>Mês</span></div></div>
@@ -428,8 +423,8 @@
               <div class="hd-panel hd-side"><div class="hd-side-head"><span>Mais vendidos</span><span class="hd-pill">hoje</span></div><div class="hd-rows"><div class="hd-rank"><span class="hd-rank-n">1</span><span class="hd-rank-info"><b>Pão fatiado</b><span>32 vendas</span></span><span class="hd-rank-v">R$ 384</span></div><div class="hd-rank"><span class="hd-rank-n">2</span><span class="hd-rank-info"><b>Leite 1L</b><span>28 vendas</span></span><span class="hd-rank-v">R$ 196</span></div><div class="hd-rank"><span class="hd-rank-n">3</span><span class="hd-rank-info"><b>Coca 2L</b><span>21 vendas</span></span><span class="hd-rank-v">R$ 252</span></div></div></div>
             </div>
           </div>
-          <!-- SLIDE COMANDAS -->
-          <div class="dc-slide" data-tag="Comandas · Bares &amp; Restaurantes">
+          <!-- SLIDE 2: COMANDAS -->
+          <div class="dc-slide" data-tag="Comandas · Bares & Restaurantes">
             <div class="hero-dash">
               <div class="hd-panel hd-main">
                 <div class="hd-head"><div class="hd-title-wrap"><span class="hd-dot"></span><span class="hd-title">Comandas · sala</span></div><div class="hd-tabs"><span class="active">Salão</span><span>Balcão</span><span>Delivery</span></div></div>
@@ -447,7 +442,7 @@
               <div class="hd-panel hd-side"><div class="hd-side-head"><span>Cardápio</span><span class="hd-pill">48 itens</span></div><div class="hd-rows"><div class="hd-menu"><span class="hd-menu-cat">★</span><span class="hd-menu-info"><b>Picanha na chapa</b><span>Mais pedido · 14×</span></span><span class="hd-menu-v">R$ 89</span></div><div class="hd-menu"><span class="hd-menu-cat">★</span><span class="hd-menu-info"><b>Chopp 300ml</b><span>Bebida · 42×</span></span><span class="hd-menu-v">R$ 12</span></div><div class="hd-menu"><span class="hd-menu-cat">★</span><span class="hd-menu-info"><b>Porção batata</b><span>Petisco · 28×</span></span><span class="hd-menu-v">R$ 32</span></div></div></div>
             </div>
           </div>
-          <!-- SLIDE OS -->
+          <!-- SLIDE 3: OS -->
           <div class="dc-slide" data-tag="Ordens de Serviço">
             <div class="hero-dash">
               <div class="hd-panel hd-main">
@@ -465,15 +460,15 @@
                 </div>
               </div>
               <div class="hd-panel hd-side"><div class="hd-side-head"><span>OS #0432 · Detalhe</span><span class="hd-pill">em andamento</span></div><div class="hd-receipt"><div class="hd-rline"><span>Mão de obra</span><span>R$ 280,00</span></div><div class="hd-rline"><span>Tela original</span><span>R$ 200,00</span></div><div class="hd-rline muted"><span>Aberta há 2 dias</span><span>—</span></div><div class="hd-rtotal"><span>Total</span><span>R$ 480,00</span></div></div><div class="hd-actions"><span class="hd-act">Recibo</span><span class="hd-act primary">Marcar pronta</span></div></div>
-              <div class="hd-panel hd-side"><div class="hd-side-head"><span>Pendências</span><span class="hd-pill warn">9</span></div><div class="hd-rows"><div class="hd-rank"><span class="hd-rank-n">!</span><span class="hd-rank-info"><b>Mariana Silva</b><span>OS #0418 · 12 dias</span></span><span class="hd-rank-v">R$ 320</span></div><div class="hd-rank"><span class="hd-rank-n">!</span><span class="hd-rank-info"><b>Carlos Edu.</b><span>OS #0421 · 8 dias</span></span><span class="hd-rank-v">R$ 180</span></div><div class="hd-rank"><span class="hd-rank-n">!</span><span class="hd-rank-info"><b>Beatriz N.</b><span>OS #0425 · 4 dias</span></span><span class="hd-rank-v">R$ 540</span></div></div></div>
+              <div class="hd-panel hd-side"><div class="hd-side-head"><span>Pendências de cobrança</span><span class="hd-pill warn">9</span></div><div class="hd-rows"><div class="hd-rank"><span class="hd-rank-n">!</span><span class="hd-rank-info"><b>Mariana Silva</b><span>OS #0418 · 12 dias</span></span><span class="hd-rank-v">R$ 320</span></div><div class="hd-rank"><span class="hd-rank-n">!</span><span class="hd-rank-info"><b>Carlos Edu.</b><span>OS #0421 · 8 dias</span></span><span class="hd-rank-v">R$ 180</span></div><div class="hd-rank"><span class="hd-rank-n">!</span><span class="hd-rank-info"><b>Beatriz N.</b><span>OS #0425 · 4 dias</span></span><span class="hd-rank-v">R$ 540</span></div></div></div>
             </div>
           </div>
         </div>
       </div>
       <div class="dc-dots">
-        <button class="dc-dot active" data-i="0">ERP</button>
-        <button class="dc-dot" data-i="1">Comandas</button>
-        <button class="dc-dot" data-i="2">Ordens de serviço</button>
+        <button class="dc-dot active" data-i="0" aria-label="ERP"><span>ERP</span></button>
+        <button class="dc-dot" data-i="1" aria-label="Comandas"><span>Comandas</span></button>
+        <button class="dc-dot" data-i="2" aria-label="OS"><span>Ordens de serviço</span></button>
       </div>
     </div>
 
@@ -557,15 +552,15 @@
         <div class="product-info"><span class="product-tag">Disponível agora</span><h3>ERP — Estoque, Vendas, Gestão</h3><p class="deck">Para mercados, farmácias e comércios que precisam saber o que têm e o que precisam repor.</p><p>Gestão completa do negócio sem a complexidade dos sistemas grandes. Estoque, vendas, clientes e lucro em um lugar só.</p><ul class="product-bullets"><li><span class="check">✓</span><span>Produtos com código de barras</span></li><li><span class="check">✓</span><span>Alerta automático de estoque baixo</span></li><li><span class="check">✓</span><span>Venda de balcão rápida</span></li><li><span class="check">✓</span><span>Relatórios de vendas e lucro</span></li></ul></div>
         <div class="product-visual"><div class="laptop"><div class="laptop-screen"><img src="erp1.png" alt="" /></div><div class="laptop-base"></div><div class="phone"><img src="erp3.png" alt="" /></div></div></div>
       </div>
-      <div class="product reveal" id="sob-demanda">
-        <div class="product-info"><span class="product-tag" style="background:rgba(255,255,255,0.06);color:var(--fg)">Sob demanda</span><h3>Sistema sob medida</h3><p class="deck">Para quem tem um problema específico e precisa de uma solução que ainda não existe pronta.</p><p>Nem todo negócio cabe num sistema de prateleira. Construímos do zero, do levantamento de requisitos até a entrega final.</p><ul class="product-bullets"><li><span class="check">✓</span><span>Análise completa do seu processo</span></li><li><span class="check">✓</span><span>Interface sob medida</span></li><li><span class="check">✓</span><span>Integrações personalizadas</span></li><li><span class="check">✓</span><span>Suporte e evolução contínua</span></li></ul><div style="margin-top:1.5rem"><button class="btn btn-primary" onclick="abrirModal()" style="font-size:0.88rem;padding:0.75rem 1.75rem">Quero um sistema personalizado →</button></div></div>
+      <div class="product reveal">
+        <div class="product-info"><span class="product-tag" style="background:rgba(255,255,255,0.06);color:var(--fg)">Sob demanda</span><h3>Sistema sob medida</h3><p class="deck">Para quem tem um problema específico e precisa de uma solução que ainda não existe pronta.</p><p>Nem todo negócio cabe num sistema de prateleira. Construímos do zero, do levantamento de requisitos até a entrega final.</p><ul class="product-bullets"><li><span class="check">✓</span><span>Análise completa do seu processo</span></li><li><span class="check">✓</span><span>Interface sob medida</span></li><li><span class="check">✓</span><span>Integrações personalizadas</span></li><li><span class="check">✓</span><span>Suporte e evolução contínua</span></li></ul></div>
         <div class="product-visual"><div style="display:flex;flex-direction:column;align-items:center;gap:24px;position:relative;z-index:1"><svg width="100" height="100" viewBox="0 0 100 100" fill="none" style="opacity:0.5"><g transform="rotate(90,50,50)"><path d="M25 22L8 50L25 78" stroke="oklch(0.72 0.18 150)" stroke-width="8" stroke-linecap="round"/><path d="M75 22L92 50L75 78" stroke="oklch(0.72 0.18 150)" stroke-width="8" stroke-linecap="round"/><path d="M63 10L37 90" stroke="oklch(0.72 0.18 150)" stroke-width="8" stroke-linecap="round"/></g></svg><p style="color:var(--muted);font-size:14px;text-align:center;max-width:240px;line-height:1.6">Cada projeto é único.<br>Vamos conversar para entender o que você precisa construir.</p></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
+<!-- DEPO -->
 <section class="section" id="depoimentos" style="border-top:1px solid var(--line)">
   <div class="container">
     <div class="section-eyebrow">Depoimentos</div>
@@ -595,101 +590,158 @@
 <footer>
   <div class="foot-grid">
     <div class="foot-brand">
-      <div class="nav-logo">
-        <svg viewBox="0 0 100 100" fill="none"><g transform="rotate(90,50,50)"><path d="M25 22L8 50L25 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="M75 22L92 50L75 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="M63 10L37 90" stroke="currentColor" stroke-width="11" stroke-linecap="round"/></g></svg>
-        <span>sistematiza<span style="color:var(--green)">.ai</span></span>
-      </div>
+      <div class="nav-logo"><svg viewBox="0 0 100 100" fill="none"><g transform="rotate(90,50,50)"><path d="M25 22L8 50L25 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="M75 22L92 50L75 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="M63 10L37 90" stroke="currentColor" stroke-width="11" stroke-linecap="round"/></g></svg><span>sistematiza<span style="color:var(--green)">.ai</span></span></div>
       <p>Sistemas digitais feitos por quem entende de tecnologia e do dia a dia de quem está atrás do balcão. Empresa 100% remota.</p>
     </div>
     <div><h5>Navegação</h5><ul><li><a href="#processo">Processo</a></li><li><a href="#solucoes">Soluções</a></li><li><a href="#casos">Casos</a></li><li><a href="#depoimentos">Depoimentos</a></li></ul></div>
-    <div><h5>Soluções</h5><ul><li><a href="#solucoes">Ordens de serviço</a></li><li><a href="#solucoes">Comandas</a></li><li><a href="#solucoes">ERP</a></li><li><a href="#sob-demanda">Sob demanda</a></li></ul></div>
-    <div><h5>Contato</h5><ul><li><a href="mailto:sistematizaai@gmail.com">sistematizaai@gmail.com</a></li><li><a href="https://instagram.com/sistematiza.oficial" target="_blank">@sistematiza.oficial</a></li><li><a href="https://youtube.com/@Sistematizaai" target="_blank">YouTube</a></li><li><a href="https://www.linkedin.com/in/sistematiza-oficial-a47992406" target="_blank">LinkedIn</a></li><li style="color:var(--muted-2);font-size:13px;margin-top:8px">Passos · MG<br>Ribeirão Preto · SP</li></ul></div>
+    <div><h5>Soluções</h5><ul><li><a href="#solucoes">Ordens de serviço</a></li><li><a href="#solucoes">Comandas</a></li><li><a href="#solucoes">ERP</a></li><li><a href="#solucoes">Sob demanda</a></li></ul></div>
+    <div><h5>Contato</h5><ul><li><a href="mailto:sistematizaai@gmail.com">sistematizaai@gmail.com</a></li><li><a href="https://instagram.com/sistematiza.oficial" target="_blank">@sistematiza.oficial</a></li><li style="color:var(--muted-2);font-size:13px;margin-top:8px">Passos · MG<br>Ribeirão Preto · SP</li></ul></div>
   </div>
   <div class="foot-bot">
     <span>© 2026 Sistematiza.ai · todos os direitos reservados</span>
-    <span>sistematizaai@gmail.com</span>
+    <span>v.04</span>
   </div>
 </footer>
 
 <script>
-// EmailJS
-const EJS_PUBLIC_KEY  = 'KLG6S0m6drCdr1b3s';
-const EJS_SERVICE_ID  = 'service_g79sxyd';
-const EJS_TEMPLATE_ID = 'template_wk80blq';
-emailjs.init({ publicKey: EJS_PUBLIC_KEY });
+  // ── EmailJS ──
+  emailjs.init({ publicKey: 'KLG6S0m6drCdr1b3s' });
+  const EJS_SERVICE  = 'service_g79sxyd';
+  const EJS_TEMPLATE = 'template_wk80blq';
 
-// Modal
-function abrirModal() {
-  document.getElementById('modalContato').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function fecharModal() {
-  document.getElementById('modalContato').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('modalContato').addEventListener('click', function(e) {
-  if (e.target === this) fecharModal();
-});
-document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
-
-async function enviarFormulario() {
-  const nome      = document.getElementById('f_nome').value.trim();
-  const telefone  = document.getElementById('f_telefone').value.trim();
-  const email     = document.getElementById('f_email').value.trim();
-  const empresa   = document.getElementById('f_empresa').value.trim();
-  const interesse = document.getElementById('f_interesse').value;
-  const mensagem  = document.getElementById('f_mensagem').value.trim();
-  if (!nome || !telefone || !email || !interesse) { alert('Por favor, preencha nome, WhatsApp, e-mail e o que você precisa.'); return; }
-  const btn = document.getElementById('btnEnviar');
-  btn.disabled = true; btn.textContent = 'Enviando...';
-  try {
-    await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, { from_name:nome, telefone, from_email:email, empresa:empresa||'—', interesse, mensagem:mensagem||'—', to_email:'sistematizaai@gmail.com' });
-    document.getElementById('formArea').style.display = 'none';
-    document.getElementById('successArea').style.display = 'block';
-  } catch(err) {
-    const a = encodeURIComponent(`[sistematiza.ai] Orçamento — ${interesse}`);
-    const b = encodeURIComponent(`Nome: ${nome}\nWhatsApp: ${telefone}\nE-mail: ${email}\nEstabelecimento: ${empresa||'—'}\nInteresse: ${interesse}\n\nMensagem:\n${mensagem||'—'}`);
-    window.location.href = `mailto:sistematizaai@gmail.com?subject=${a}&body=${b}`;
-    document.getElementById('formArea').style.display = 'none';
-    document.getElementById('successArea').style.display = 'block';
-  } finally { btn.disabled = false; btn.textContent = 'Quero um orçamento →'; }
-}
-
-// Reveal
-const io = new IntersectionObserver((es)=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:0.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-// Carousel
-(function(){
-  const root = document.getElementById('dashCarousel');
-  if(!root) return;
-  const track = root.querySelector('.dc-track');
-  const slides = root.querySelectorAll('.dc-slide');
-  const dots = root.querySelectorAll('.dc-dot');
-  const prev = root.querySelector('.dc-nav.prev');
-  const next = root.querySelector('.dc-nav.next');
-  let i=0, timer=null, paused=false;
-  function go(idx){
-    i=(idx+slides.length)%slides.length;
-    const offset=slides[i].offsetLeft-track.offsetLeft;
-    track.style.transform=`translateX(${-offset}px)`;
-    dots.forEach((d,j)=>d.classList.toggle('active',j===i));
+  // ── Modal ──
+  function abrirModal() {
+    document.getElementById('modalContato').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
-  function start(){ stop(); timer=setInterval(()=>{ if(!paused) go(i+1); },5000); }
-  function stop(){ if(timer){ clearInterval(timer); timer=null; } }
-  prev.addEventListener('click',()=>{ go(i-1); start(); });
-  next.addEventListener('click',()=>{ go(i+1); start(); });
-  dots.forEach((d,j)=>d.addEventListener('click',()=>{ go(j); start(); }));
-  root.addEventListener('mouseenter',()=>{paused=true});
-  root.addEventListener('mouseleave',()=>{paused=false});
-  let sx=0,dx=0,dragging=false;
-  track.addEventListener('pointerdown',e=>{ dragging=true; sx=e.clientX; dx=0; track.style.transition='none'; });
-  track.addEventListener('pointermove',e=>{ if(!dragging) return; dx=e.clientX-sx; const cur=slides[i].offsetLeft-track.offsetLeft; track.style.transform=`translateX(${-cur+dx}px)`; });
-  track.addEventListener('pointerup',()=>{ if(!dragging) return; dragging=false; track.style.transition=''; if(Math.abs(dx)>60){ go(i+(dx<0?1:-1)); } else { go(i); } start(); });
-  track.addEventListener('pointercancel',()=>{ dragging=false; track.style.transition=''; go(i); });
-  window.addEventListener('resize',()=>go(i));
-  go(0); start();
-})();
+  function fecharModal() {
+    document.getElementById('modalContato').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modalContato').addEventListener('click', function(e) {
+    if (e.target === this) fecharModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
+
+  // ── Envio ──
+  async function enviarFormulario() {
+    const nome      = document.getElementById('f_nome').value.trim();
+    const telefone  = document.getElementById('f_telefone').value.trim();
+    const email     = document.getElementById('f_email').value.trim();
+    const empresa   = document.getElementById('f_empresa').value.trim();
+    const interesse = document.getElementById('f_interesse').value;
+    const mensagem  = document.getElementById('f_mensagem').value.trim();
+    if (!nome || !telefone || !email || !interesse) {
+      alert('Por favor, preencha nome, WhatsApp, e-mail e o que você precisa.');
+      return;
+    }
+    const btn = document.getElementById('btnEnviar');
+    btn.disabled = true; btn.textContent = 'Enviando...';
+    try {
+      await emailjs.send(EJS_SERVICE, EJS_TEMPLATE, {
+        from_name: nome, telefone, from_email: email,
+        empresa: empresa || '—', interesse, mensagem: mensagem || '—',
+        to_email: 'sistematizaai@gmail.com'
+      });
+      document.getElementById('formArea').style.display = 'none';
+      document.getElementById('successArea').style.display = 'block';
+    } catch(err) {
+      const s = encodeURIComponent(`[sistematiza.ai] Orçamento — ${interesse}`);
+      const b = encodeURIComponent(`Nome: ${nome}\nWhatsApp: ${telefone}\nE-mail: ${email}\nEstabelecimento: ${empresa||'—'}\nInteresse: ${interesse}\n\nMensagem:\n${mensagem||'—'}`);
+      window.location.href = `mailto:sistematizaai@gmail.com?subject=${s}&body=${b}`;
+      document.getElementById('formArea').style.display = 'none';
+      document.getElementById('successArea').style.display = 'block';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Quero um orçamento →';
+    }
+  }
+
+  // ── Reveal ──
+
+  // ── EmailJS + Modal ──
+  emailjs.init({ publicKey: 'KLG6S0m6drCdr1b3s' });
+  const EJS_SERVICE  = 'service_g79sxyd';
+  const EJS_TEMPLATE = 'template_wk80blq';
+
+  function abrirModal() {
+    document.getElementById('modalContato').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function fecharModal() {
+    document.getElementById('modalContato').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modalContato').addEventListener('click', function(e) {
+    if (e.target === this) fecharModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
+
+  async function enviarFormulario() {
+    const nome      = document.getElementById('f_nome').value.trim();
+    const telefone  = document.getElementById('f_telefone').value.trim();
+    const email     = document.getElementById('f_email').value.trim();
+    const empresa   = document.getElementById('f_empresa').value.trim();
+    const interesse = document.getElementById('f_interesse').value;
+    const mensagem  = document.getElementById('f_mensagem').value.trim();
+    if (!nome || !telefone || !email || !interesse) {
+      alert('Por favor, preencha nome, WhatsApp, e-mail e o que você precisa.');
+      return;
+    }
+    const btn = document.getElementById('btnEnviar');
+    btn.disabled = true; btn.textContent = 'Enviando...';
+    try {
+      await emailjs.send(EJS_SERVICE, EJS_TEMPLATE, {
+        from_name: nome, telefone, from_email: email,
+        empresa: empresa || '—', interesse, mensagem: mensagem || '—',
+        to_email: 'sistematizaai@gmail.com'
+      });
+      document.getElementById('formArea').style.display = 'none';
+      document.getElementById('successArea').style.display = 'block';
+    } catch(err) {
+      const s = encodeURIComponent('[sistematiza.ai] Orçamento — ' + interesse);
+      const b = encodeURIComponent('Nome: ' + nome + '\nWhatsApp: ' + telefone + '\nE-mail: ' + email + '\nEstabelecimento: ' + (empresa||'—') + '\nInteresse: ' + interesse + '\n\nMensagem:\n' + (mensagem||'—'));
+      window.location.href = 'mailto:sistematizaai@gmail.com?subject=' + s + '&body=' + b;
+      document.getElementById('formArea').style.display = 'none';
+      document.getElementById('successArea').style.display = 'block';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Quero um orçamento →';
+    }
+  }
+
+  const io = new IntersectionObserver((es)=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ── Carousel ──
+  (function(){
+    const root = document.getElementById('dashCarousel');
+    if(!root) return;
+    const track = root.querySelector('.dc-track');
+    const slides = root.querySelectorAll('.dc-slide');
+    const dots = root.querySelectorAll('.dc-dot');
+    const prev = root.querySelector('.dc-nav.prev');
+    const next = root.querySelector('.dc-nav.next');
+    let i=0, timer=null, paused=false;
+    function go(idx){
+      i=(idx+slides.length)%slides.length;
+      const offset=slides[i].offsetLeft-track.offsetLeft;
+      track.style.transform=`translateX(${-offset}px)`;
+      dots.forEach((d,j)=>d.classList.toggle('active',j===i));
+    }
+    function start(){ stop(); timer=setInterval(()=>{if(!paused) go(i+1);},5000); }
+    function stop(){ if(timer){clearInterval(timer);timer=null;} }
+    prev.addEventListener('click',()=>{go(i-1);start();});
+    next.addEventListener('click',()=>{go(i+1);start();});
+    dots.forEach((d,j)=>d.addEventListener('click',()=>{go(j);start();}));
+    root.addEventListener('mouseenter',()=>{paused=true});
+    root.addEventListener('mouseleave',()=>{paused=false});
+    let sx=0,dx=0,dragging=false;
+    track.addEventListener('pointerdown',e=>{dragging=true;sx=e.clientX;dx=0;track.style.transition='none';});
+    track.addEventListener('pointermove',e=>{if(!dragging) return;dx=e.clientX-sx;const cur=slides[i].offsetLeft-track.offsetLeft;track.style.transform=`translateX(${-cur+dx}px)`;});
+    track.addEventListener('pointerup',()=>{if(!dragging) return;dragging=false;track.style.transition='';if(Math.abs(dx)>60){go(i+(dx<0?1:-1));}else{go(i);}start();});
+    track.addEventListener('pointercancel',()=>{dragging=false;track.style.transition='';go(i);});
+    window.addEventListener('resize',()=>go(i));
+    go(0); start();
+  })();
 </script>
 </body>
 </html>
