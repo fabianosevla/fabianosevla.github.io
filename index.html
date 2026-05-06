@@ -216,8 +216,8 @@
   .product-bullets .check{flex-shrink:0;width:18px;height:18px;border-radius:50%;background:var(--green-glow);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-top:2px}
   .product-visual{background:linear-gradient(135deg,oklch(0.18 0.04 150) 0%,var(--bg) 100%);padding:48px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:480px}
   .product-visual::before{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,var(--green-glow) 0%,transparent 60%);pointer-events:none}
-  .laptop{position:relative;width:100%;max-width:520px;z-index:1;perspective:1400px}
-  .laptop-screen{background:#0a0d0e;border-radius:14px 14px 4px 4px;border:8px solid #1a1f21;border-bottom-width:14px;box-shadow:0 30px 80px -10px rgba(0,0,0,0.7),0 0 0 1px rgba(255,255,255,0.04);overflow:hidden;transform:rotateX(6deg);transform-origin:bottom}
+  .laptop{position:relative;width:100%;max-width:520px;z-index:1}
+  .laptop-screen{background:#0a0d0e;border-radius:14px 14px 4px 4px;border:8px solid #1a1f21;border-bottom-width:14px;box-shadow:0 30px 80px -10px rgba(0,0,0,0.7),0 0 0 1px rgba(255,255,255,0.04);overflow:hidden}
   .laptop-screen img{display:block;width:100%}
   .laptop-base{height:14px;background:linear-gradient(180deg,#252b2d 0%,#14181a 100%);border-radius:0 0 14px 14px;margin:0 -20px;position:relative}
   .laptop-base::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:4px;background:#0a0d0e;border-radius:0 0 6px 6px}
@@ -304,12 +304,7 @@
 
 
   /* ── HERO SPLIT ── */
-  .hero-inner{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0}
-  .hero-left{display:flex;flex-direction:column}
-  .hero-right{display:flex;align-items:center;justify-content:center;min-height:380px;pointer-events:none}
-  .hero-logo-bg{width:min(480px,46vw);height:auto;color:var(--green);opacity:0.09;transform:rotate(-15deg);animation:logoPulse 3.5s ease-in-out infinite}
-  @keyframes logoPulse{0%,100%{opacity:0.07;transform:rotate(-15deg) scale(1)}50%{opacity:0.14;transform:rotate(-15deg) scale(1.05)}}
-  @media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-right{display:none}}
+
 
   /* ── MODAL ── */
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .25s}
@@ -403,17 +398,17 @@
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div class="hero-pill"><span class="badge">AO VIVO</span><span>Sistemas digitais para o seu negócio</span></div>
-    <h1>Existe um sistema<br>para <em>cada problema.</em></h1>
-    <p class="hero-sub">Sistemas digitais que organizam sua operação e fazem seu negócio crescer de verdade — feitos por quem entende tanto de tecnologia quanto da rotina real do balcão, do salão, da oficina.</p>
-    <div class="hero-cta">
-      <button class="btn btn-primary" onclick="abrirModal()">Quero meu sistema <span class="arrow">→</span></button>
-      <a href="#solucoes" class="btn btn-secondary">Ver soluções <span class="arrow">→</span></a>
-    </div>
-
-    <!-- HERO SPLIT: texto esquerda + logo direita -->
-    <div class="hero-split">
-      <div class="hero-split-logo">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-pill"><span class="badge">AO VIVO</span><span>Sistemas digitais para o seu negócio</span></div>
+        <h1>Existe um sistema<br>para <em>cada problema.</em></h1>
+        <p class="hero-sub">Sistemas digitais que organizam sua operação e fazem seu negócio crescer — feitos para MEI, CNPJ e quem empreende por conta própria e precisa de controle de verdade.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" onclick="abrirModal()">Quero meu sistema <span class="arrow">→</span></button>
+          <a href="#solucoes" class="btn btn-secondary">Ver soluções <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="hero-right">
         <svg class="hero-logo-bg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g transform="rotate(90,50,50)">
             <path d="M25 22L8 50L25 78" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
@@ -435,8 +430,8 @@
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track">
-    <span>Mercados</span><span>Bares &amp; Restaurantes</span><span>Oficinas</span><span>Clínicas</span><span>Farmácias</span><span>Pet Shops</span><span>Comércio Local</span><span>Autônomos</span><span>Lanchonetes</span>
-    <span>Mercados</span><span>Bares &amp; Restaurantes</span><span>Oficinas</span><span>Clínicas</span><span>Farmácias</span><span>Pet Shops</span><span>Comércio Local</span><span>Autônomos</span><span>Lanchonetes</span>
+    <span>Mercados</span><span>Bares &amp; Restaurantes</span><span>Prestadores de serviço</span><span>Clínicas</span><span>Farmácias</span><span>Pet Shops</span><span>Comércio Local</span><span>Autônomos</span><span>Lanchonetes</span>
+    <span>Mercados</span><span>Bares &amp; Restaurantes</span><span>Prestadores de serviço</span><span>Clínicas</span><span>Farmácias</span><span>Pet Shops</span><span>Comércio Local</span><span>Autônomos</span><span>Lanchonetes</span>
   </div>
 </div>
 
@@ -445,11 +440,11 @@
   <div class="container">
     <div class="section-eyebrow">Processo</div>
     <h2 class="section-h reveal">Simples assim:<br>você escolhe, a gente <em>entrega.</em></h2>
-    <p class="section-sub reveal">Traduzimos a realidade do seu negócio em um sistema que funciona do jeito que você precisa — do atendimento ao financeiro, do estoque à comanda.</p>
+    <p class="section-sub reveal">Traduzimos a realidade do seu negócio em um sistema que funciona do jeito que você precisa — do atendimento ao financeiro, do estoque ao caixa.</p>
     <div class="steps reveal">
       <div class="step"><div class="step-num">DESCOBERTA</div><div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></div><h3>Escutamos antes de codar</h3><p>Mapeamos como sua operação funciona, identificamos gargalos e definimos exatamente o que precisa mudar.</p></div>
-      <div class="step"><div class="step-num">CONSTRUÇÃO</div><div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 13 4-8 4 8 4-8 4 8M4 19h16"/></svg></div><h3>Construímos com cuidado</h3><p>Funcionalidade e usabilidade caminham juntas. Qualquer pessoa da sua equipe consegue operar sem manual.</p></div>
-      <div class="step"><div class="step-num">GO-LIVE</div><div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div><h3>Colocamos no ar com você</h3><p>Sistema configurado com os dados do seu negócio. Treinamos sua equipe e acompanhamos as primeiras semanas.</p></div>
+      <div class="step"><div class="step-num">CONSTRUÇÃO</div><div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 13 4-8 4 8 4-8 4 8M4 19h16"/></svg></div><h3>Construímos com cuidado</h3><p>Funcionalidade e facilidade de uso caminham juntas. Qualquer pessoa da sua equipe consegue operar sem precisar de treinamento técnico.</p></div>
+      <div class="step"><div class="step-num">GO-LIVE</div><div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div><h3>Colocamos no ar com você</h3><p>Sistema configurado com os dados do seu negócio. Orientamos sua equipe e acompanhamos os primeiros dias até tudo rodar no automático.</p></div>
       <div class="step"><div class="step-num">CLOUD</div><div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><h3>Acessa de qualquer lugar</h3><p>Funciona pelo navegador — celular, tablet, computador. Dados seguros na nuvem, sempre atualizados.</p></div>
       <div class="step"><div class="step-num">SUPORTE</div><div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Suporte de gente</h3><p>Quando você precisar, tem pessoa real respondendo. Nada de bot, nada de fila, nada de "abriu chamado".</p></div>
       <div class="step"><div class="step-num">EVOLUÇÃO</div><div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 17 6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div><h3>Evolui com você</h3><p>Seu negócio cresce, o sistema acompanha. Novas funcionalidades e ajustes fazem parte da parceria.</p></div>
@@ -489,7 +484,7 @@
   <div class="container">
     <div class="section-eyebrow">Soluções</div>
     <h2 class="section-h reveal">Uma solução pra <em>cada negócio.</em></h2>
-    <p class="section-sub reveal">Cada solução é construída com tecnologia sob medida para o seu tipo de negócio — eficiente, com a sua cara, pronta para crescer com você.</p>
+    <p class="section-sub reveal">Cada solução é desenvolvida para o seu tipo de negócio — seja você MEI, CNPJ, autônomo ou gestor de uma equipe pequena.</p>
     <div class="products">
       <div class="product reveal">
         <div class="product-info"><span class="product-tag">Disponível agora</span><h3>Ordens de Serviço</h3><p class="deck">Para quem presta serviço e vive no aperto entre o que prometeu e o que entregou.</p><p>Você abre uma OS, acompanha o andamento, registra o que foi cobrado, o que foi pago e o que está pendente — emite recibo na hora.</p><ul class="product-bullets"><li><span class="check">✓</span><span>Cadastro de clientes com histórico completo</span></li><li><span class="check">✓</span><span>Status de cada OS em tempo real</span></li><li><span class="check">✓</span><span>Controle de cobranças e pendências</span></li><li><span class="check">✓</span><span>Recibo digital com um clique</span></li></ul></div>
@@ -542,7 +537,7 @@
   <div class="foot-grid">
     <div class="foot-brand">
       <div class="nav-logo"><svg viewBox="0 0 100 100" fill="none"><g transform="rotate(90,50,50)"><path d="M25 22L8 50L25 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="M75 22L92 50L75 78" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="M63 10L37 90" stroke="currentColor" stroke-width="11" stroke-linecap="round"/></g></svg><span>sistematiza<span style="color:var(--green)">.ai</span></span></div>
-      <p>Sistemas digitais feitos por quem entende de tecnologia e do dia a dia de quem está atrás do balcão. Empresa 100% remota.</p>
+      <p>Sistemas digitais feitos para MEIs, CNPJs e pequenos negócios que querem crescer com organização. Empresa 100% remota.</p>
     </div>
     <div><h5>Navegação</h5><ul><li><a href="#processo">Processo</a></li><li><a href="#solucoes">Soluções</a></li><li><a href="#casos">Casos</a></li><li><a href="#depoimentos">Depoimentos</a></li></ul></div>
     <div><h5>Soluções</h5><ul><li><a href="#solucoes">Ordens de serviço</a></li><li><a href="#solucoes">Comandas</a></li><li><a href="#solucoes">ERP</a></li><li><a href="#solucoes">Sob demanda</a></li></ul></div>
